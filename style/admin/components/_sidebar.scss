@@ -1,0 +1,15 @@
+.admin__panel {
+  &--aside {
+    &-btn {
+      @apply block p-4 uppercase text-sm text-gray-700 bg-gray-100 w-full text-left;
+
+      &.active {
+        @apply bg-yellow-600 text-white;
+      }
+
+      &:hover {
+        @apply bg-yellow-500 text-white;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.btn {
+  @apply shadow text-sm  font-semibold w-max my-2 p-2 px-4 md:px-5  rounded text-white transition-all transform active:scale-95;
+
+  &-small {
+    @apply p-1 px-3 rounded-sm text-sm font-medium;
+  }
+}
+
+.btn_hero {
+  @apply shadow-md box-border text-xl font-semibold p-3 px-8 rounded text-white transition-all transform active:scale-95;
+
+  &_outline {
+    @apply border border-gray-500 text-gray-500 bg-white shadow-none;
+  }
+}

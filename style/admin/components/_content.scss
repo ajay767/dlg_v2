@@ -1,0 +1,30 @@
+.admin__panel {
+  &--content {
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    @apply scrollbar-hide flex flex-col relative;
+
+    @screen md {
+      min-height: 75vh;
+      max-height: 75vh;
+    }
+
+    &-nav {
+      min-height: 55px;
+      @apply bg-white z-10 sticky top-0 right-0 left-0 p-1 px-2   flex items-center justify-start border-b border-gray-200 overflow-x-auto overflow-y-auto scrollbar-hide;
+
+      &-btn {
+        @apply block bg-gray-200 min-w-max mr-2 p-2  px-5  rounded-full text-gray-700 text-sm font-normal;
+
+        &.active {
+          @apply bg-yellow-500 text-white;
+        }
+      }
+    }
+
+    &-main {
+      @apply p-3;
+    }
+  }
+}
