@@ -7,6 +7,7 @@ import UpcomingEvent from '../components/front/UpcomingEvent';
 import Header from '../components/front/Header';
 import Footer from '../components/front/Footer';
 import Blogging from '../components/front/BloggingSection';
+import Modal from '../components/Modal';
 
 function ShortHeader() {
   return (
@@ -84,7 +85,7 @@ function Main() {
   return (
     <div id="landing">
       <Header />
-
+      <Modal>hello this is modal</Modal>
       <Landing />
       <ShortHeader />
       <Section className="my-24  ">

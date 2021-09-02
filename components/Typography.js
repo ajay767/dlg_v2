@@ -31,7 +31,7 @@ function Typography({ children, type, className }) {
 
     case 'header-caption': {
       return (
-        <h4 className={`  text-base font-bold ${className}`}>{children}</h4>
+        <h4 className={`  text-base font-medium ${className}`}>{children}</h4>
       );
     }
     case 'base': {
