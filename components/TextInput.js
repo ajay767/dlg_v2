@@ -27,7 +27,7 @@ function TextInput({
           <input
             id={id}
             {...props}
-            className={`rounded  w-full outline-none text-sm md:text-base font-normal bg-gray-100  p-2 md:p-3 text-gray-700 `}
+            className={`rounded  w-full outline-none text-base font-normal bg-gray-100  p-3 text-gray-700 `}
             type={type}
             value={value}
             onChange={(e) => setValue(e.target.value)}

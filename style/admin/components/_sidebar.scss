@@ -10,6 +10,10 @@
       &:hover {
         @apply bg-yellow-500 text-white;
       }
+
+      &.hero {
+        @apply bg-red-500 text-white;
+      }
     }
   }
 }

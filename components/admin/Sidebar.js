@@ -23,14 +23,7 @@ const Sidebar = ({ handleSignout }) => {
       className={`w-8/12 md:w-full bg-white min-h-full  border-r border-gray-200`}
     >
       {renderSidebar()}
-      <button
-        style={{
-          background: 'var(--color-red)',
-          color: 'var(--color-white)',
-        }}
-        onClick={handleSignout}
-        className="admin__panel--aside-btn"
-      >
+      <button onClick={handleSignout} className="admin__panel--aside-btn hero">
         Signout
       </button>
     </aside>

@@ -1,0 +1,9 @@
+.blog {
+  &__container {
+    @apply w-full p-2 md:px-0 md:w-11/12 xl:w-6/12 mx-auto;
+  }
+
+  &__poster {
+    @apply rounded-md my-2 h-64 lg:h-96 w-full object-cover overflow-hidden;
+  }
+}

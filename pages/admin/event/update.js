@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import withAuth from '../../../lib/auth';
-import routes from '../../../components/admin/routes';
-import NavBar from '../../../components/admin/Navbar';
-import Wrapper from '../../../components/admin/Wrapper';
-import Content from '../../../components/admin/Content';
-import Typography from '../../../components/Typography';
-import Button from '../../../components/Button';
-import TextInput from '../../../components/TextInput';
-import Loader from '../../../utils/Loader';
+import withAuth from '@lib/withAuth';
+import routes from '@components/admin/routes';
+import NavBar from '@components/admin/Navbar';
+import Wrapper from '@components/admin/Wrapper';
+import Content from '@components/admin/Content';
+import Typography from '@components/Typography';
+import Button from '@components/Button';
+import TextInput from '@components/TextInput';
+import Loader from '@utils/Loader';
 
 const UpdateEvent = () => {
   const [eventId, setEventId] = useState('');

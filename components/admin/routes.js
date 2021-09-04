@@ -6,25 +6,6 @@ const UpcomingFeature = () => {
   );
 };
 
-const routes = {
-  list: [
-    { title: 'events', path: '/admin/event', component: UpcomingFeature },
-    { title: 'blogging', path: '/admin/blogging', component: UpcomingFeature },
-    {
-      title: 'recruitments',
-      path: '/admin/recruitment',
-      component: UpcomingFeature,
-    },
-    {
-      title: 'academics',
-      path: '/admin/academics',
-      component: UpcomingFeature,
-    },
-    { title: 'notice', path: '/admin/notice', component: UpcomingFeature },
-    { title: 'workshops', path: '/admin/workshop', component: UpcomingFeature },
-  ],
-};
-
 const adminRoutes = {
   events: {
     path: '/admin/event',
@@ -39,6 +20,13 @@ const adminRoutes = {
     navbar: [
       { title: 'Add', path: '/admin/academics' },
       { title: 'Update', path: '/admin/academics/update' },
+    ],
+  },
+  blogging: {
+    path: '/admin/blogging',
+    navbar: [
+      { title: 'Create', path: '/admin/blogging' },
+      { title: 'Preview', path: '/admin/blogging/create' },
     ],
   },
 };

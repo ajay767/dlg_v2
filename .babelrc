@@ -1,0 +1,19 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@utils": "./utils", // will connect to all utiliy related functions
+          "@components": "./components", // to all defined components
+          "@layout": "./components/layout", // to all defined components
+          "@front": "./components/front", // to all defined components
+          "@lib": "./lib", //  to all defined lib functions
+          "@admin": "./components/admin" // admin components
+        }
+      }
+    ]
+  ]
+}

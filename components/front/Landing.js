@@ -35,10 +35,7 @@ function Landing() {
           <Typography type="primary" className="text-gray-700">
             Digital Learning <span className="text-primary-dark">Group</span>
           </Typography>
-          <Typography
-            type="header-caption"
-            className="text-lg text-gray-500 my-2"
-          >
+          <Typography type="header-caption" className="text-gray-500 my-2">
             Let’s build your career together “ We at digital learning group,
             prepare students for future by making them aware of all the
             opportunities available in the digital world and how to make best

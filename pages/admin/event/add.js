@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import withAuth from '../../../lib/auth';
-import routes from '../../../components/admin/routes';
-import NavBar from '../../../components/admin/Navbar';
-import Content from '../../../components/admin/Content';
-import Wrapper from '../../../components/admin/Wrapper';
-import EventForm from '../../../components/admin/EventForm';
-import Typography from '../../../components/Typography';
+import withAuth from '@lib/withAuth';
+import routes from '@components/admin/routes';
+import NavBar from '@components/admin/Navbar';
+import Content from '@components/admin/Content';
+import Wrapper from '@components/admin/Wrapper';
+import EventForm from '@components/admin/EventForm';
+import Typography from '@components/Typography';
 
 const AddEvent = () => {
   const [formData, setFormData] = useState({

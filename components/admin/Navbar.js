@@ -1,6 +1,6 @@
 import { NavLink } from '../NavLink';
 
-function NavBar({ navItem }) {
+function NavBar({ navItem = [] }) {
   const renderNavItem = () => {
     return navItem.map((btnItem, index) => {
       return (

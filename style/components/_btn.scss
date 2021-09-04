@@ -7,7 +7,7 @@
 }
 
 .btn_hero {
-  @apply shadow-md box-border text-xl font-semibold p-3 px-8 rounded text-white transition-all transform active:scale-95;
+  @apply shadow-md box-border text-xl font-semibold p-2 px-8 rounded text-white transition-all transform active:scale-95;
 
   &_outline {
     @apply border border-gray-500 text-gray-500 bg-white shadow-none;

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Cookie from 'universal-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import AdmiPortal from '../../components/layout/AdminPortal';
-import Typography from '../../components/Typography';
-import TextInput from '../../components/TextInput';
-import Button from '../../components/Button';
+import AdmiPortal from '@components/layout/AdminPortal';
+import Typography from '@components/Typography';
+import TextInput from '@components/TextInput';
+import Button from '@components/Button';
 import { useRouter } from 'next/router';
 
 const cookie = new Cookie();

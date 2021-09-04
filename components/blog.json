@@ -1,0 +1,16 @@
+{
+  "blocks": [
+    {
+      "key": "eo46s",
+      "text": "Hello this part is highlighted",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        { "offset": 6, "length": 24, "style": "bgcolor-rgb(250,197,28)" }
+      ],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": {}
+}

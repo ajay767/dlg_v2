@@ -5,5 +5,5 @@
   @apply min-h-screen bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center;
 }
 .admin__container {
-  @apply flex flex-col md:w-11/12  lg:w-10/12 xl:w-10/12 xl:h-4/6 bg-white  md:rounded-lg overflow-hidden min-h-screen  md:min-h-0  w-full  mx-auto shadow-lg;
+  @apply flex flex-col md:w-11/12  lg:w-10/12 xl:w-10/12 xl:h-4/6 bg-white  md:rounded-lg overflow-hidden min-h-screen  md:min-h-0  w-full  mx-auto shadow-xl;
 }

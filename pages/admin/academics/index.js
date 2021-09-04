@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import withAuth from '../../../lib/auth';
-import routes from '../../../components/admin/routes';
-import NavBar from '../../../components/admin/Navbar';
-import Wrapper from '../../../components/admin/Wrapper';
-import Content from '../../../components/admin/Content';
-import TextInput from '../../../components/TextInput';
-import Button from '../../../components/Button';
-import Typography from '../../../components/Typography';
-import FilePondComponent from '../../../components/FilePond';
+import withAuth from '@lib/withAuth';
+import routes from '@components/admin/routes';
+import NavBar from '@components/admin/Navbar';
+import Wrapper from '@components/admin/Wrapper';
+import Content from '@components/admin/Content';
+import TextInput from '@components/TextInput';
+import Button from '@components/Button';
+import Typography from '@components/Typography';
+import FilePondComponent from '@components/FilePond';
 
 const AddMaterial = () => {
   const [formData, setFormData] = useState({

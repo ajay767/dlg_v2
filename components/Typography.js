@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Typography({ children, type, className }) {
+function Typography({ children, type, className, ...props }) {
   switch (type) {
     case 'primary': {
       return (
         <h1
-          className={`text-4xl md:text-6xl font-bold lg:font-extrabold ${className}`}
+          {...props}
+          className={`typography typography__primary ${className}`}
         >
           {children}
         </h1>
@@ -15,7 +16,8 @@ function Typography({ children, type, className }) {
     case 'secondary': {
       return (
         <h2
-          className={`text-3xl md:text-4xl font-bold lg:font-extrabold  ${className}`}
+          {...props}
+          className={`typography typography__secondary  ${className}`}
         >
           {children}
         </h2>
@@ -23,7 +25,10 @@ function Typography({ children, type, className }) {
     }
     case 'section': {
       return (
-        <h3 className={`text-lg md:text-xl font-semibold  ${className}`}>
+        <h3
+          {...props}
+          className={`typography typography__section ${className}`}
+        >
           {children}
         </h3>
       );
@@ -31,20 +36,53 @@ function Typography({ children, type, className }) {
 
     case 'header-caption': {
       return (
-        <h4 className={`  text-base font-medium ${className}`}>{children}</h4>
+        <h4
+          {...props}
+          className={`typography typography__header-caption   ${className}`}
+        >
+          {children}
+        </h4>
       );
     }
-    case 'base': {
-      return <h4 className={` text-base ${className}`}>{children}</h4>;
-    }
     case 'content': {
-      return <p className={`text-lg  ${className}`}>{children}</p>;
+      return (
+        <p
+          {...props}
+          className={`typography typography__content  ${className}`}
+        >
+          {children}
+        </p>
+      );
     }
-    case 'caption': {
-      return <span className={`${className}`}>{children}</span>;
+    case 'blockquote': {
+      return (
+        <p
+          {...props}
+          className={`typography typography__blockquote  ${className}`}
+        >
+          {children}
+        </p>
+      );
+    }
+    case 'list-item': {
+      return (
+        <li
+          {...props}
+          className={`typography typography__list-item  ${className}`}
+        >
+          {children}
+        </li>
+      );
+    }
+    case 'code': {
+      return (
+        <div className={`typography   ${className}`}>
+          <code className="code">{children}</code>
+        </div>
+      );
     }
     default: {
-      return <p>{children}</p>;
+      return <p {...props}>{children}</p>;
     }
   }
 }
@@ -55,7 +93,9 @@ Typography.propTypes = {
     'secondary',
     'section',
     'header-caption',
-    'base',
+    'content',
+    'list-item',
+    'blockquote',
   ]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
