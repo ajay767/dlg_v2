@@ -10,6 +10,7 @@ import Gist from 'react-gist';
 
 import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
+import PageWrapper from '../../components/layout/PageWrapper';
 
 function BlogPage() {
   const prevRef = useRef(null);
@@ -32,8 +33,7 @@ function BlogPage() {
   };
 
   return (
-    <>
-      <Header />
+    <PageWrapper>
       <Section>
         <div className="blog__container text-gray-600 mb-10">
           <Typography type="secondary" className="text-gray-700">
@@ -150,8 +150,7 @@ function BlogPage() {
           className="my-10"
         />
       </Section>
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }
 
