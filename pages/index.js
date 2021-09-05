@@ -1,6 +1,3 @@
-import Button from '@components/Button';
-import TextInput from '@components/TextInput';
-import Typography from '@components/Typography';
 import Section from '@components/layout/Section';
 import Landing from '@components/front/Landing';
 import UpcomingEvent from '@components/front/UpcomingEvent';
@@ -11,7 +8,7 @@ import Blogging from '@components/front/BloggingSection';
 function ShortHeader() {
   return (
     <Section className="my-20">
-      <div className="w-full md:w-8/12 mx-auto p-10 flex items-center justify-between  ">
+      <div className="w-full md:w-8/12 mx-auto px-10 flex items-center justify-between  ">
         <p className="flex flex-col justify-center items-center ">
           <span
             style={{

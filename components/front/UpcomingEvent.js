@@ -7,7 +7,7 @@ function UpcomingEvent() {
       className="rounded-md overflow-hidden relative shadow-lg flex flex-col md:flex-row justify-between items-center h-max bg-gray-800"
       style={{
         backgroundImage:
-          ' linear-gradient(125deg, #2a2a2a 50%, rgba(0,0,0,0)), url("/assets/images/party.jpg")',
+          ' linear-gradient(125deg, #000 50%, rgba(0,0,0,0)), url("/assets/images/party.jpg")',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
       }}

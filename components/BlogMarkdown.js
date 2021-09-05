@@ -48,7 +48,7 @@ function BlogMarkdown({ data = {} }) {
 
         case 'blockquote': {
           return (
-            <Typography key={block.key} type="blockquote">
+            <Typography key={block.key} className="my-10" type="blockquote">
               {block.text}
             </Typography>
           );

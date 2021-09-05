@@ -4,6 +4,10 @@
   &-small {
     @apply p-1 px-3 rounded-sm text-sm font-medium;
   }
+
+  &_outline {
+    @apply border border-gray-500 text-gray-500 bg-white shadow-none;
+  }
 }
 
 .btn_hero {

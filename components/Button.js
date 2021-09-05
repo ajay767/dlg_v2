@@ -53,9 +53,7 @@ function Button({
         <button
           {...props}
           disabled={disabled}
-          className={` ${className} btn_hero btn_hero_outline ${
-            disabled ? 'bg-gray-400' : 'bg-primary-dark'
-          } `}
+          className={` ${className} btn_hero btn_hero_outline  `}
         >
           {children}
         </button>

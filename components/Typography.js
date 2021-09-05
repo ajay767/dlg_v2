@@ -86,6 +86,7 @@ function Typography({ children, type, className, ...props }) {
     }
   }
 }
+
 Typography.propTypes = {
   className: PropTypes.string,
   type: PropTypes.oneOf([

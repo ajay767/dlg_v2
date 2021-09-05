@@ -1,10 +1,10 @@
 import Button from '../Button';
-
+import Link from 'next/link';
 function BlogCard() {
   return (
-    <div className="  w-full sm:w-64 justify-self-center ">
+    <div className="w-64 justify-self-center animate__bounceInLeft ">
       <img
-        className="rounded-sm object-cover w-full h-44"
+        className="rounded-md object-cover w-full h-44"
         alt="blog card"
         src="/assets/images/beyond.jpg"
       />
@@ -15,9 +15,13 @@ function BlogCard() {
         We at digital learning group, prepare students for future by making them
         aware of all the opportunities
       </p>
-      <Button className="my-4" btnType="small">
-        Read more
-      </Button>
+      <Link href="/blog/sd">
+        <a>
+          <Button className="my-4" btnType="small">
+            Read more
+          </Button>
+        </a>
+      </Link>
     </div>
   );
 }
