@@ -1,11 +1,11 @@
-import { useRef } from "react";
-import PageWrapper from "@layout/PageWrapper";
-import Section from "@layout/Section";
-import Typography from "@components/Typography";
-import SwiperSection from "@swiper/SwiperSection";
-import SwiperNavigation from "@swiper/NavButton";
-import CustomImageComponent from "../components/Image";
-import Accordian from "@components/front/Accordian";
+import { useRef } from 'react';
+import PageWrapper from '@layout/PageWrapper';
+import Section from '@layout/Section';
+import Typography from '@components/Typography';
+import SwiperSection from '@swiper/SwiperSection';
+import SwiperNavigation from '@swiper/NavButton';
+import CustomImageComponent from '../components/Image';
+import Accordian from '@components/front/Accordian';
 
 function TeamCard({ data }) {
   return (
@@ -25,15 +25,15 @@ function TeamCard({ data }) {
 }
 
 const team = [
-  "/assets/images/dev-ajay.jpg",
-  "/assets/images/sidd_sir.jpg",
-  "/assets/images/harshita.jpeg",
-  "/assets/images/satyam.jpeg",
-  "/assets/images/vaishnavi.jpeg",
-  "/assets/images/nipurn_sir.jpg",
-  "/assets/images/profile1.jpg",
-  "/assets/images/profile2.webp",
-  "/assets/images/profile3.jpg",
+  '/assets/images/dev-ajay.jpg',
+  '/assets/images/sidd_sir.jpg',
+  '/assets/images/harshita.jpeg',
+  '/assets/images/satyam.jpeg',
+  '/assets/images/vaishnavi.jpeg',
+  '/assets/images/nipurn_sir.jpg',
+  '/assets/images/profile1.jpg',
+  '/assets/images/profile2.webp',
+  '/assets/images/profile3.jpg',
 ];
 
 function About() {
@@ -46,8 +46,8 @@ function About() {
         style={{
           backgroundImage:
             ' linear-gradient(125deg, #000 50%, rgba(0,0,0,0)), url("/assets/images/meet.jpg")',
-          backgroundPosition: "center",
-          backgroundSize: "cover",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
         }}
       >
         <Section>
@@ -107,7 +107,9 @@ function About() {
           </div>
         </div>
       </Section>
-      <Accordian />
+      <Section>
+        <Accordian />
+      </Section>
       <Section className="my-10">
         <div className="mb-5 flex items-center justify-between">
           <div>

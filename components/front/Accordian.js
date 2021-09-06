@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import Typography from "@components/Typography";
 import { IoMdAdd } from "react-icons/io";
 import { IoMdRemove } from "react-icons/io";
 export default function Accordian() {
@@ -35,21 +36,24 @@ export default function Accordian() {
           className="max-w-2xl"
           data-index={index}
         >
-          <div className="flex items-center cursor-pointer justify-between p-2 bg-gray-900 border">
-            <h1 className="text-white font-semibold">{question}</h1>
+          <div className="flex items-center cursor-pointer justify-between p-2 bg-gray-700 border">
+            <Typography type="header-caption" className="text-white">
+              {question}
+            </Typography>
             <span className="text-white">
               {open != index ? <IoMdAdd /> : <IoMdRemove />}
             </span>
           </div>
-          <p
-            className={`bg-gray-200 px-2 transition-all duration-300 ease-in-out ${
+          <Typography
+            type="header-caption"
+            className={`bg-gray-200 px-3 transition-all duration-300 ease-in-out overflow-hidden ${
               index == open
-                ? "visible h-auto opacity-1"
+                ? "visible opacity-1 p-3"
                 : "h-0 opacity-0 invisible"
             }`}
           >
             {answers[index]}
-          </p>
+          </Typography>
         </div>
       );
     });

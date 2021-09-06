@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from '../NavLink';
-import routes from './routes';
+import React from "react";
+import { NavLink } from "../NavLink";
+import routes from "./routes";
 
 const Sidebar = ({ handleSignout }) => {
   const renderSidebar = () => {

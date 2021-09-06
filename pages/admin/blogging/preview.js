@@ -11,7 +11,6 @@ function Preview() {
   useEffect(() => {
     setMounted(true);
     const blogJSON = localStorage.getItem("blog-draft");
-    console.log(JSON.parse(blogJSON));
     if (blogJSON) {
       setData(JSON.parse(blogJSON));
     }

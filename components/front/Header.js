@@ -1,6 +1,6 @@
-import { BiMenu } from 'react-icons/bi';
-import Section from '../layout/Section';
-import Link from 'next/link';
+import { BiMenu } from "react-icons/bi";
+import Section from "../layout/Section";
+import Link from "next/link";
 
 function Header({ toggleSidebar }) {
   return (

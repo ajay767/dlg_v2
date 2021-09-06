@@ -1,6 +1,6 @@
-import withAuth from '@lib/withAuth';
-import Wrapper from '@components/admin/Wrapper';
-import Content from '@components/admin/Content';
+import withAuth from "@lib/withAuth";
+import Wrapper from "@components/admin/Wrapper";
+import Content from "@components/admin/Content";
 
 function Admin() {
   return (
@@ -10,4 +10,4 @@ function Admin() {
   );
 }
 
-export default withAuth(Admin, '/admin/auth');
+export default withAuth(Admin, "/admin/auth");

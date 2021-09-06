@@ -9,7 +9,7 @@ function UpcomingEvent() {
   const [second, setSecond] = useState();
   useEffect(() => {
     setInterval(() => {
-      Timer("september 5,2021 00:00:00", setDay, setHour, setMinute, setSecond);
+      Timer("september 6,2021 20:00:00", setDay, setHour, setMinute, setSecond);
     }, 1000);
   }, []);
 

@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
-import propTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+import React, { useMemo } from "react";
+import propTypes from "prop-types";
+import { nanoid } from "nanoid";
 
 function TextInput({
-  textbox = 'primary',
+  textbox = "primary",
   value,
   setValue,
-  type = 'text',
+  type = "text",
   className,
   inputClassName,
   label,
@@ -14,13 +14,13 @@ function TextInput({
 }) {
   const id = useMemo(() => nanoid(), []);
   switch (textbox) {
-    case 'primary': {
+    case "primary": {
       return (
         <div className={`rounded overflow-hidden ${className} `}>
           {label && (
             <label
               htmlFor={id}
-              className="text-sm font-medium text-gray-400 mb-2"
+              className="text-base font-medium text-gray-400 mb-2"
             >
               {label}
             </label>
@@ -28,7 +28,7 @@ function TextInput({
           <input
             id={id}
             {...props}
-            className={`rounded  w-full outline-none text-base font-normal bg-gray-200   p-3 text-gray-700 ${inputClassName} `}
+            className={`rounded  w-full outline-none text-base font-normal bg-gray-200  p-3 text-gray-700 ${inputClassName} `}
             type={type}
             value={value}
             onChange={(e) => setValue(e.target.value)}
