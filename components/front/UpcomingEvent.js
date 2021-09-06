@@ -1,15 +1,32 @@
-import Button from '../Button';
-import Typography from '../Typography';
-
+import Button from "../Button";
+import Typography from "../Typography";
+import { useEffect, useState } from "react";
+import Timer from "./timer";
 function UpcomingEvent() {
+  const [day, setDay] = useState();
+  const [hour, setHour] = useState();
+  const [minute, setMinute] = useState();
+  const [second, setSecond] = useState();
+  useEffect(() => {
+    setInterval(() => {
+      Timer(
+        "september 10,2021 00:00:00",
+        setDay,
+        setHour,
+        setMinute,
+        setSecond
+      );
+    }, 1000);
+  }, []);
+
   return (
     <div
       className="rounded-md overflow-hidden relative shadow-lg flex flex-col md:flex-row justify-between items-center h-max bg-gray-800"
       style={{
         backgroundImage:
           ' linear-gradient(125deg, #000 50%, rgba(0,0,0,0)), url("/assets/images/party.jpg")',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        backgroundPosition: "center",
+        backgroundSize: "cover",
       }}
     >
       <div className="p-5 py-5 md:p-10 w-full md:w-6/12 text-white">
@@ -29,19 +46,19 @@ function UpcomingEvent() {
           className="mt-5 w-8/12 flex justify-between items-center  text-white "
         >
           <span className="flex items-center justify-center flex-col">
-            12 <span className="text-base font-medium">Days</span>
+            {day} <span className="text-base font-medium">Days</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            10 <span className="text-base font-medium">Hr</span>
+            {hour} <span className="text-base font-medium">Hr</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            09 <span className="text-base font-medium">Min</span>
+            {minute} <span className="text-base font-medium">Min</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            35 <span className="text-base font-medium">Sec</span>
+            {second} <span className="text-base font-medium">Sec</span>
           </span>
         </Typography>
       </div>

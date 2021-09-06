@@ -1,13 +1,13 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
 
 SwiperCore.use([Navigation]);
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
 // eslint-disable-next-line
-import 'swiper/css/bundle';
+import "swiper/css/bundle";
 
 function SwiperSection({
   prevRef,
@@ -27,7 +27,7 @@ function SwiperSection({
           swiper.params.navigation.prevEl = prevRef.current;
           swiper.params.navigation.nextEl = nextRef.current;
         }}
-        slidesPerView={'auto'}
+        slidesPerView={"auto"}
         spaceBetween={20}
         freeMode={true}
         className="mySwiper"

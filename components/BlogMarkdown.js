@@ -1,13 +1,13 @@
-import Typography from './Typography';
-import Image from 'next/image';
-import Gist from 'react-gist';
-import reactHTMLParser from 'react-html-parser';
+import Typography from "./Typography";
+import Image from "next/image";
+import Gist from "react-gist";
+import reactHTMLParser from "react-html-parser";
 
 function BlogMarkdown({ data = {} }) {
   const renderBlog = () => {
     return data.blocks.map((block) => {
       switch (block.type) {
-        case 'header-one': {
+        case "header-one": {
           return (
             <Typography
               key={block.key}
@@ -18,14 +18,14 @@ function BlogMarkdown({ data = {} }) {
             </Typography>
           );
         }
-        case 'header-two': {
+        case "header-two": {
           return (
             <Typography key={block.key} type="section">
               {block.text}
             </Typography>
           );
         }
-        case 'atomic': {
+        case "atomic": {
           const atomicKey = block.entityRanges[0].key;
           const src = data.entityMap[atomicKey].data.src;
           return (
@@ -42,25 +42,25 @@ function BlogMarkdown({ data = {} }) {
           );
         }
 
-        case 'code': {
+        case "code": {
           return <Gist id={block.text} key={block.key} />;
         }
 
-        case 'blockquote': {
+        case "blockquote": {
           return (
             <Typography key={block.key} className="my-10" type="blockquote">
               {block.text}
             </Typography>
           );
         }
-        case 'unordered-list-item': {
+        case "unordered-list-item": {
           return (
             <Typography key={block.key} type="list-item" className="list-disc">
               {block.text}
             </Typography>
           );
         }
-        case 'ordered-list-item': {
+        case "ordered-list-item": {
           return (
             <Typography
               key={block.key}
@@ -75,7 +75,7 @@ function BlogMarkdown({ data = {} }) {
           let text = block.text;
           let extraLength = 0;
           block.inlineStyleRanges.forEach((inlineStyle) => {
-            if (inlineStyle.style === 'BOLD') {
+            if (inlineStyle.style === "BOLD") {
               let str = text;
               const start = inlineStyle.offset + extraLength;
               const len = inlineStyle.length;
@@ -84,12 +84,12 @@ function BlogMarkdown({ data = {} }) {
                 str.slice(0, start) +
                 '<span class="bold">' +
                 str.slice(start, start + len) +
-                '</span>' +
+                "</span>" +
                 str.slice(start + len);
               extraLength = 26;
             }
 
-            if (inlineStyle.style.startsWith('bgcolor')) {
+            if (inlineStyle.style.startsWith("bgcolor")) {
               let str = text;
               const start = inlineStyle.offset + extraLength;
               const len = inlineStyle.length;
@@ -98,7 +98,7 @@ function BlogMarkdown({ data = {} }) {
                 str.slice(0, start) +
                 '<span class="highlight">' +
                 str.slice(start, start + len) +
-                '</span>' +
+                "</span>" +
                 str.slice(start + len);
               extraLength = 26;
             }

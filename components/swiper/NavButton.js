@@ -1,5 +1,5 @@
-import React from 'react';
-import { FcNext } from 'react-icons/fc';
+import React from "react";
+import { FcNext } from "react-icons/fc";
 function NavButton({ prevRef, nextRef }) {
   return (
     <div className=" items-center justify-start hidden md:flex">
