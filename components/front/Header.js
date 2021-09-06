@@ -24,7 +24,7 @@ function Header({ toggleSidebar }) {
           <Link href="/blog/23gbbdsj">
             <a className="text-gray-600 text-base cursor-pointer">Career</a>
           </Link>
-          <Link href="/">
+          <Link href="/contact">
             <a className="hidden lg:block text-gray-600 text-base cursor-pointer">
               Contact us
             </a>

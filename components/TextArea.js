@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
-function TextArea({ label, value, setValue, className }) {
+function TextArea({ label, value, setValue, className, inputClassName }) {
   const id = useMemo(nanoid, []);
 
   return (
@@ -14,7 +14,7 @@ function TextArea({ label, value, setValue, className }) {
         style={{ minHeight: '100px' }}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className={`${className} rounded  w-full outline-none text-sm font-normal bg-gray-100  p-2 text-gray-700 `}
+        className={`${className} rounded  w-full outline-none text-sm font-normal bg-gray-200  ${inputClassName}  p-2 text-gray-700 `}
         id={id}
       ></textarea>
     </div>

@@ -8,7 +8,7 @@ const navLinks = [
   { title: 'Academics', path: '/' },
   { title: 'Gallery', path: '/' },
   { title: 'Career', path: '/blog/sdhs' },
-  { title: 'Contact us', path: '/' },
+  { title: 'Contact us', path: '/contact' },
   { title: 'About us', path: '/about' },
 ];
 

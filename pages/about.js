@@ -1,9 +1,43 @@
+import { useRef } from 'react';
 import PageWrapper from '@layout/PageWrapper';
 import Section from '@layout/Section';
 import Typography from '@components/Typography';
-import Image from 'next/image';
+import SwiperSection from '@swiper/SwiperSection';
+import SwiperNavigation from '@swiper/NavButton';
+import CustomImageComponent from '../components/Image';
+
+function TeamCard({ data }) {
+  return (
+    <div className="bg-white p-2 rounded shadow text-gray-700">
+      <CustomImageComponent
+        src={data}
+        className="w-44 h-44 object-cover rounded"
+      />
+      <div className="my-2 ">
+        <Typography type="header-caption" className="font-bold">
+          Ajay yadav
+        </Typography>
+        <Typography type="header-caption">Technical Head</Typography>
+      </div>
+    </div>
+  );
+}
+
+const team = [
+  '/assets/images/dev-ajay.jpg',
+  '/assets/images/sidd_sir.jpg',
+  '/assets/images/harshita.jpeg',
+  '/assets/images/satyam.jpeg',
+  '/assets/images/vaishnavi.jpeg',
+  '/assets/images/nipurn_sir.jpg',
+  '/assets/images/profile1.jpg',
+  '/assets/images/profile2.webp',
+  '/assets/images/profile3.jpg',
+];
 
 function About() {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   return (
     <PageWrapper>
       <div
@@ -16,11 +50,11 @@ function About() {
         }}
       >
         <Section>
-          <div className=" py-10 px-5 md:py-20">
+          <div className=" py-10  md:py-20">
             <div className="text-gray-100 w-full md:w-11/12 lg:w-8/12 xl:w-6/12     ">
               <Typography type="primary" className="mb-2">
                 Working Together is
-                <span className="text-primary">Success</span>
+                <span className="text-primary"> Success</span>
               </Typography>
               <Typography type="header-caption" className="">
                 Digital learning group is a student run community of Madhav
@@ -34,14 +68,12 @@ function About() {
         </Section>
       </div>
       <Section>
-        <div className="p-5 md:py-20  flex flex-col md:flex-row justify-around items-center">
-          <div className=" w-full md:w-6/12 lg:w-4/12 shadow-md ">
-            <img
-              className="h-72 md:h-full w-full   rounded-md object-cover  "
-              src="/assets/images/people-chair.jpg"
-              alt="people on chair"
-            />
-          </div>
+        <div className="mt-10  mb-10 md:py-20  flex flex-col md:flex-row justify-around items-center">
+          <CustomImageComponent
+            className="w-full md:w-6/12 lg:w-4/12  shadow-md h-56 md:h-64  rounded-md"
+            src="/assets/images/people-chair.jpg"
+            alt="people on chair"
+          />
           <div className=" w-full md:w-6/12 md:p-5 lg:p-10 mt-5 md:mt-0 text-gray-700">
             <Typography type="secondary" className="mb-2">
               How we work
@@ -54,17 +86,15 @@ function About() {
             </Typography>
           </div>
         </div>
-        <div className="p-5 md:py-20  flex flex-col md:flex-row justify-around items-center">
-          <div className="md:order-last  w-full md:w-4/12 shadow-md ">
-            <img
-              className="h-72 w-full   rounded-md object-cover "
-              src="/assets/images/meet.jpg"
-              alt="people on chair"
-            />
-          </div>
+        <div className="my-5 md:py-20  flex flex-col md:flex-row justify-around items-center">
+          <CustomImageComponent
+            className="w-full md:w-6/12 lg:w-4/12 md:order-last shadow-md h-56 md:h-64  rounded-md"
+            src="/assets/images/meet.jpg"
+            alt="people on chair"
+          />
           <div className=" w-full md:w-6/12 md:p-10 mt-5 md:mt-0 text-gray-700">
             <Typography type="secondary" className="mb-2">
-              Our Webinar
+              Webinar and Events
             </Typography>
             <Typography type="content">
               We organize weekly webinars with professionals and experts as
@@ -75,6 +105,27 @@ function About() {
             </Typography>
           </div>
         </div>
+      </Section>
+
+      <Section className="my-10">
+        <div className="mb-5 flex items-center justify-between">
+          <div>
+            <Typography className="text-gray-700" type="secondary">
+              Our Team
+            </Typography>
+            <Typography className="text-gray-500" type="header-caption">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </Typography>
+          </div>
+          <SwiperNavigation nextRef={nextRef} prevRef={prevRef} />
+        </div>
+        <SwiperSection
+          component={TeamCard}
+          nextRef={nextRef}
+          prevRef={prevRef}
+          data={team}
+        />
       </Section>
     </PageWrapper>
   );

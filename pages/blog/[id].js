@@ -1,12 +1,11 @@
 import { useState, useRef } from 'react';
 import Section from '@layout/Section';
-import Header from '@front/Header';
-import Footer from '@front/Footer';
 import BlogCard from '@front/BlogCard';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import Image from 'next/image';
 import Gist from 'react-gist';
+import CustomImageComponent from '../../components/Image';
 
 import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
@@ -47,14 +46,10 @@ function BlogPage() {
             Informed and comprehensive, Wired is basically the perfect tech blog
             to follow.
           </Typography>
-          <div className="blog__poster">
-            <Image
-              placeholder="blur"
-              blurDataURL="L44.b_n:DhbC.As;aJWAR4s:x^WX"
+          <div>
+            <CustomImageComponent
               src="/assets/images/tech.jpg"
-              layout="responsive"
-              width="100%"
-              height="100%"
+              className="blog__poster"
             />
           </div>
 
@@ -102,14 +97,10 @@ function BlogPage() {
           </Typography>
 
           <Gist id="013c3d1c5385ac253d0af27d06d53f06" />
-          <div className="blog__poster">
-            <Image
-              placeholder="blur"
-              blurDataURL="L44.b_n:DhbC.As;aJWAR4s:x^WX"
+          <div>
+            <CustomImageComponent
               src="/assets/images/tech2.jpg"
-              layout="responsive"
-              width="100%"
-              height="100%"
+              className="blog__poster"
             />
           </div>
           <Typography

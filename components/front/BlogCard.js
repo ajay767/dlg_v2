@@ -1,9 +1,10 @@
 import Button from '../Button';
 import Link from 'next/link';
+import CustomImageComponent from '../Image';
 function BlogCard() {
   return (
     <div className="w-64 justify-self-center animate__bounceInLeft ">
-      <img
+      <CustomImageComponent
         className="rounded-md object-cover w-full h-44"
         alt="blog card"
         src="/assets/images/beyond.jpg"
