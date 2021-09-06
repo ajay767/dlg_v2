@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Cookie from 'universal-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdmiPortal from '@components/layout/AdminPortal';
@@ -7,8 +6,6 @@ import Typography from '@components/Typography';
 import TextInput from '@components/TextInput';
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
-
-const cookie = new Cookie();
 
 function Auth() {
   const router = useRouter();
@@ -18,13 +15,11 @@ function Auth() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post('/api/login', {
+    await axios.post('/api/login', {
       email,
       password,
     });
-    console.log(res.data);
-    cookie.set('token', res.data.token);
-    toast.success('Form filled!');
+    toast.success('Welcome back!');
     router.push('/admin');
   };
 

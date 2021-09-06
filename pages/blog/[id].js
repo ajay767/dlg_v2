@@ -3,7 +3,6 @@ import Section from '@layout/Section';
 import BlogCard from '@front/BlogCard';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
-import Image from 'next/image';
 import Gist from 'react-gist';
 import CustomImageComponent from '../../components/Image';
 

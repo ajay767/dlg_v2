@@ -5,7 +5,9 @@ import Content from '@components/admin/Content';
 function Admin() {
   return (
     <Wrapper>
-      <Content>this is main page</Content>
+      <Content>
+        <div className="bg-red-500  w-full h-96"></div>
+      </Content>
     </Wrapper>
   );
 }
