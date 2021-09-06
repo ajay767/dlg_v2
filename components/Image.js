@@ -37,7 +37,7 @@ const CustomImageComponent = ({
           />
         </div>
       ) : (
-        <div className={`relative overflow-hidden ${className}`}></div>
+        <div className={`${className}`}></div>
       )}
     </>
   );
