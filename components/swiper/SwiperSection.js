@@ -33,7 +33,7 @@ function SwiperSection({
         className="mySwiper"
       >
         {data.map((curr, index) => (
-          <SwiperSlide className="w-max" key={index}>
+          <SwiperSlide className="w-max py-3" key={index}>
             <Component data={curr} />
           </SwiperSlide>
         ))}

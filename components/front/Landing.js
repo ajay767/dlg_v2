@@ -1,6 +1,7 @@
 import Typography from '../Typography';
 import Button from '../Button';
 import Section from '../layout/Section';
+import CustomImageComponent from '../Image';
 function Landing() {
   return (
     <Section className="overflow-hidden">

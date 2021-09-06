@@ -1,28 +1,10 @@
-import { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import Section from '../layout/Section';
 import Link from 'next/link';
-import MobileSidebar from './MobileSidebar';
 
-const navLinks = [
-  { title: 'Home', path: '/' },
-  { title: 'Academics', path: '/' },
-  { title: 'Gallery', path: '/' },
-  { title: 'Career', path: '/blog/sdhs' },
-  { title: 'Contact us', path: '/' },
-  { title: 'About us', path: '/' },
-];
-
-function Header() {
-  const [sidebarState, setSidebarState] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarState(!sidebarState);
-  };
-
+function Header({ toggleSidebar }) {
   return (
-    <header className="sticky top-0 left-0 right-0 bg-white z-20 border-b border-gray-100 ">
-      <MobileSidebar toggleSidebar={toggleSidebar} active={sidebarState} />
+    <header className="sticky top-0 left-0 right-0 bg-white z-20 border-b border-gray-100">
       <Section className="py-2 flex items-center justify-between">
         <img
           className="h-12 md:h-16"
@@ -42,12 +24,12 @@ function Header() {
           <Link href="/blog/23gbbdsj">
             <a className="text-gray-600 text-base cursor-pointer">Career</a>
           </Link>
-          <Link href="/">
+          <Link href="/contact">
             <a className="hidden lg:block text-gray-600 text-base cursor-pointer">
               Contact us
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/about">
             <a className="hidden lg:block text-gray-600 text-base cursor-pointer">
               About us
             </a>

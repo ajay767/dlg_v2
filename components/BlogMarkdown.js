@@ -1,5 +1,5 @@
 import Typography from "./Typography";
-import Image from "next/image";
+import CustomImageComponent from "./Image";
 import Gist from "react-gist";
 import reactHTMLParser from "react-html-parser";
 
@@ -29,14 +29,11 @@ function BlogMarkdown({ data = {} }) {
           const atomicKey = block.entityRanges[0].key;
           const src = data.entityMap[atomicKey].data.src;
           return (
-            <div className="blog__poster mb-4" key={block.key}>
-              <Image
-                placeholder="blur"
-                blurDataURL="L44.b_n:DhbC.As;aJWAR4s:x^WX"
+            <div key={block.key}>
+              <CustomImageComponent
+                className="blog__poster mb-4"
                 src={src}
-                layout="responsive"
-                width="100%"
-                height="100%"
+                alt="digital Learning group"
               />
             </div>
           );

@@ -8,6 +8,7 @@
         "alias": {
           "@utils": "./utils", // will connect to all utiliy related functions
           "@components": "./components", // to all defined components
+          "@swiper": "./components/swiper", // to all defined components
           "@layout": "./components/layout", // to all defined components
           "@front": "./components/front", // to all defined components
           "@lib": "./lib", //  to all defined lib functions

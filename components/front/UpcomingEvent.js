@@ -19,6 +19,14 @@ function UpcomingEvent() {
     }, 1000);
   }, []);
 
+  const fineTime = (day) => {
+    if (day < 10) {
+      return `0${day}`;
+    } else {
+      return day;
+    }
+  };
+
   return (
     <div
       className="rounded-md overflow-hidden relative shadow-lg flex flex-col md:flex-row justify-between items-center h-max bg-gray-800"
@@ -46,19 +54,21 @@ function UpcomingEvent() {
           className="mt-5 w-8/12 flex justify-between items-center  text-white "
         >
           <span className="flex items-center justify-center flex-col">
-            {day} <span className="text-base font-medium">Days</span>
+            {fineTime(day)} <span className="text-base font-medium">Days</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            {hour} <span className="text-base font-medium">Hr</span>
+            {fineTime(hour)} <span className="text-base font-medium">Hr</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            {minute} <span className="text-base font-medium">Min</span>
+            {fineTime(minute)}{" "}
+            <span className="text-base font-medium">Min</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            {second} <span className="text-base font-medium">Sec</span>
+            {fineTime(second)}{" "}
+            <span className="text-base font-medium">Sec</span>
           </span>
         </Typography>
       </div>

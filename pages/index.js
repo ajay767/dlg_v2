@@ -1,8 +1,7 @@
 import Section from "@components/layout/Section";
 import Landing from "@components/front/Landing";
 import UpcomingEvent from "@components/front/UpcomingEvent";
-import Header from "@components/front/Header";
-import Footer from "@components/front/Footer";
+import PageWrapper from "@components/layout/PageWrapper";
 import Blogging from "@components/front/BloggingSection";
 
 function ShortHeader() {
@@ -80,14 +79,16 @@ function ShortHeader() {
 function Main() {
   return (
     <div id="landing">
-      <Header />
-      <Landing />
-      <ShortHeader />
-      <Section className="my-24  ">
-        <UpcomingEvent />
-      </Section>
-      <Blogging />
-      <Footer />
+      <PageWrapper>
+        <>
+          <Landing />
+          <ShortHeader />
+          <Section className="my-24  ">
+            <UpcomingEvent />
+          </Section>
+          <Blogging />
+        </>
+      </PageWrapper>
     </div>
   );
 }

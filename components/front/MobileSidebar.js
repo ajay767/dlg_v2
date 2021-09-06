@@ -8,8 +8,8 @@ const navLinks = [
   { title: 'Academics', path: '/' },
   { title: 'Gallery', path: '/' },
   { title: 'Career', path: '/blog/sdhs' },
-  { title: 'Contact us', path: '/' },
-  { title: 'About us', path: '/' },
+  { title: 'Contact us', path: '/contact' },
+  { title: 'About us', path: '/about' },
 ];
 
 function MobileSidebar({ toggleSidebar, active = false }) {
@@ -20,7 +20,7 @@ function MobileSidebar({ toggleSidebar, active = false }) {
       isVisible={active}
     >
       <div
-        className={`md:hidden absolute top-0 left-0 p-5  bg-blue-500 h-screen overflow-hidden w-full transition-all ${
+        className={`block p-5  bg-blue-500 h-screen w-full transition-all ${
           !active ? 'transform translate-x-full' : ''
         }`}
       >
