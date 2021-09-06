@@ -44,7 +44,7 @@ export default function Accordian() {
           <p
             className={`bg-gray-200 px-2 transition-all duration-300 ease-in-out ${
               index == open
-                ? "visible h-20 opacity-1"
+                ? "visible h-auto opacity-1"
                 : "h-0 opacity-0 invisible"
             }`}
           >
