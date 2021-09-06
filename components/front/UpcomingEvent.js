@@ -1,7 +1,7 @@
-import Button from "../Button";
-import Typography from "../Typography";
-import { useEffect, useState } from "react";
-import Timer from "./timer";
+import Button from '../Button';
+import Typography from '../Typography';
+import { useEffect, useState } from 'react';
+import Timer from './timer';
 function UpcomingEvent() {
   const [day, setDay] = useState();
   const [hour, setHour] = useState();
@@ -9,13 +9,7 @@ function UpcomingEvent() {
   const [second, setSecond] = useState();
   useEffect(() => {
     setInterval(() => {
-      Timer(
-        "september 10,2021 00:00:00",
-        setDay,
-        setHour,
-        setMinute,
-        setSecond
-      );
+      Timer('september 6,2021 20:00:00', setDay, setHour, setMinute, setSecond);
     }, 1000);
   }, []);
 
@@ -33,8 +27,8 @@ function UpcomingEvent() {
       style={{
         backgroundImage:
           ' linear-gradient(125deg, #000 50%, rgba(0,0,0,0)), url("/assets/images/party.jpg")',
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
       }}
     >
       <div className="p-5 py-5 md:p-10 w-full md:w-6/12 text-white">
@@ -62,12 +56,12 @@ function UpcomingEvent() {
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            {fineTime(minute)}{" "}
+            {fineTime(minute)}{' '}
             <span className="text-base font-medium">Min</span>
           </span>
           :
           <span className="flex items-center justify-center flex-col">
-            {fineTime(second)}{" "}
+            {fineTime(second)}{' '}
             <span className="text-base font-medium">Sec</span>
           </span>
         </Typography>

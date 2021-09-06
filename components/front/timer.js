@@ -1,7 +1,8 @@
 function Timer(dateInString, setDay, setHour, setMinute, setSecond) {
   const eventDate = new Date(dateInString).getTime();
   const present = new Date().getTime();
-  const timeDifference = eventDate - present;
+  let timeDifference = eventDate - present;
+  timeDifference = Math.max(0, timeDifference);
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
