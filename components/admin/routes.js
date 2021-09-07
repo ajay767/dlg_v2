@@ -36,6 +36,10 @@ const adminRoutes = {
     path: '/admin/setting',
     access: ['admin', 'super'],
   },
+  register: {
+    path: '/admin/register/user',
+    access: ['super'],
+  },
 };
 
 export default adminRoutes;

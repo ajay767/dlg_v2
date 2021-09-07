@@ -99,14 +99,6 @@ function Blogging() {
     const init = async () => {
       LocalBase = (await import('localbase')).default;
       db = new LocalBase('db');
-    };
-    init();
-  }, []);
-
-  useEffect(() => {
-    const init = async () => {
-      LocalBase = (await import('localbase')).default;
-      db = new LocalBase('db');
       const blogList = await db.collection('blogs').get();
       const draftBlog = blogList.filter((blog) => blog.id === 1);
       if (draftBlog.length > 0) {

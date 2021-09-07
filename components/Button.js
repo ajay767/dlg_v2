@@ -1,10 +1,18 @@
 import React from 'react';
 
+const Loader = (
+  <div
+    id="custom_spinner"
+    className="border-r-2 border-b-2 border-blue-50 p-2 rounded-full"
+  ></div>
+);
+
 function Button({
   btnType = 'not-specified',
   children,
   disabled = false,
   className,
+  loading,
   ...props
 }) {
   switch (btnType) {
@@ -17,7 +25,7 @@ function Button({
           }`}
           {...props}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }
@@ -31,10 +39,23 @@ function Button({
             disabled ? 'bg-gray-400' : 'bg-primary-light'
           } `}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }
+
+    case 'loading': {
+      return (
+        <button
+          disabled={disabled}
+          className={` ${className}  btn ${
+            disabled ? 'bg-gray-400' : 'bg-primary-dark'
+          }`}
+          {...props}
+        ></button>
+      );
+    }
+
     case 'hero': {
       return (
         <button
@@ -44,7 +65,7 @@ function Button({
             disabled ? 'bg-gray-400' : 'bg-primary-dark'
           } `}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }
@@ -55,7 +76,7 @@ function Button({
           disabled={disabled}
           className={` ${className} btn_hero btn_hero_outline  `}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }
@@ -69,7 +90,7 @@ function Button({
             disabled ? 'bg-gray-400' : 'bg-primary-dark'
           } `}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }
@@ -81,7 +102,7 @@ function Button({
           className={` ${className} btn ${disabled ? 'bg-gray-400' : ''}`}
           {...props}
         >
-          {children}
+          {loading ? Loader : children}
         </button>
       );
     }

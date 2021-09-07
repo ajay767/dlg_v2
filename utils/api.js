@@ -11,6 +11,7 @@ export const getLocalUser = () => {
     role: localCookie.get('role'),
   };
 };
+
 export const createBlog = (data, onSuccess, onError) => {
   api
     .post('/api/v2/blog/create', data)

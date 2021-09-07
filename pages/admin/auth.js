@@ -22,8 +22,8 @@ function Auth() {
       password,
     });
 
-    localCookie.set('token', data.token);
-    localCookie.set('role', data.role);
+    localCookie.set('token', data.token, { path: '/' });
+    localCookie.set('role', data.role, { path: '/' });
     toast.success('Welcome back!');
     router.push('/admin');
   };
@@ -56,7 +56,7 @@ function Auth() {
               value={password}
               setValue={setPassword}
             />
-            <Button btnType="secondary" type="submit" className="my-4 ">
+            <Button btnType="primary" type="submit" className="my-4 ">
               Login
             </Button>
           </form>

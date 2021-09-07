@@ -20,9 +20,10 @@ function Wrapper({ children }) {
     return true;
   });
 
-  const handleSignout = async () => {
-    localCookie.remove('token');
-    localCookie.remove('role');
+  const handleSignout = () => {
+    localCookie.set('token', '', { expires: new Date(0) });
+    localCookie.set('role', '', { expires: new Date(0) });
+    console.log('cookie removd');
     router.push('/');
   };
 

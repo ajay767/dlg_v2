@@ -18,11 +18,13 @@ registerPlugin(
   FilePondPluginImageCrop
 );
 
-function FilePondComponent({ label }) {
+function FilePondComponent({ label, className }) {
   const [files, setFiles] = useState([]);
   return (
-    <div>
-      <label className="text-sm font-medium text-gray-400 mb-2">{label}</label>
+    <div className={`${className}`}>
+      <label className="text-base font-medium text-gray-400 mb-2">
+        {label}
+      </label>
       <FilePond
         files={files}
         onupdatefiles={setFiles}

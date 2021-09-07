@@ -64,6 +64,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@coreui/react@^4.0.0-rc.0":
+  version "4.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@coreui/react/-/react-4.0.0-rc.0.tgz#a5bcc13f13e1acec273ffb32f085452d2a7da116"
+  integrity sha512-vJ8MqBChFfxtYqmvFzcxwNU+98LniLlGmaIrY7Xa7Ckr29ZRh1d4aBJhM1gGtE2kefsra4B8hzw/6rzEXYdLlQ==
+
 "@emotion/cache@^11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.4.0.tgz#293fc9d9a7a38b9aad8e9337e5014366c3b09ac0"
