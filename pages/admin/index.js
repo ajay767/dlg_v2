@@ -1,13 +1,20 @@
-import withAuth from "@lib/withAuth";
-import Wrapper from "@components/admin/Wrapper";
-import Content from "@components/admin/Content";
+import withAuth from '@lib/withAuth';
+import Wrapper from '@components/admin/Wrapper';
+import Content from '@components/admin/Content';
 
 function Admin() {
   return (
     <Wrapper>
-      <Content>this is main page</Content>
+      <Content>
+        <div className="w-full h-96">Hello</div>
+      </Content>
     </Wrapper>
   );
 }
 
-export default withAuth(Admin, "/admin/auth");
+const authProp = {
+  component: Admin,
+  allowed: ['admin'],
+};
+
+export default withAuth(authProp);

@@ -21,5 +21,8 @@ const UpdateMaterial = () => {
     </Wrapper>
   );
 };
-
-export default withAuth(UpdateMaterial, '/admin/auth');
+const authProp = {
+  component: UpdateMaterial,
+  allowed: ['super'],
+};
+export default withAuth(authProp);

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Button from '../Button';
 
 const logo = '/assets/images/logo_main.png';
-const DP = '/assets/images/profile1.jpg';
+const DP = '/assets/images/user.png';
 
 const Header = ({ sidebarHandler, handleSignout }) => {
   return (

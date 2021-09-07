@@ -1,12 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import cookies from '../../middlewares/cookies';
+import cookie from 'cookie';
 
-export default cookies((req, res) => {
-  console.log(req.body);
-  const token = 'this-is-my-strong-cookie';
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-  });
-  res.status(200).json({ token });
-});
+export default (req, res) => {
+  const token = 'this-is-my-strong-cookie-http-only';
+  const role = req.body.email === 'aju@gmail.com' ? 'super' : 'admin';
+
+  res.status(200).json({ token, role });
+};

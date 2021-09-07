@@ -38,5 +38,8 @@ const AddEvent = () => {
     </Wrapper>
   );
 };
-
-export default withAuth(AddEvent, '/admin/auth');
+const authProp = {
+  component: AddEvent,
+  allowed: ['super'],
+};
+export default withAuth(authProp);
