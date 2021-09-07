@@ -78,7 +78,6 @@ function Blogging() {
       setEditorState(EditorState.createWithContent(rawContentFromStore));
     }
     const newForm = JSON.parse(localStorage.getItem("formData"));
-    console.log(newForm);
     if (newForm) {
       setFormData(newForm);
     }
