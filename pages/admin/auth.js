@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import universalCookie from 'universal-cookie';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdmiPortal from '@components/layout/AdminPortal';
@@ -7,8 +7,6 @@ import Typography from '@components/Typography';
 import TextInput from '@components/TextInput';
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
-
-const localCookie = new universalCookie();
 
 function Auth() {
   const router = useRouter();
@@ -22,8 +20,8 @@ function Auth() {
       password,
     });
 
-    localCookie.set('token', data.token, { path: '/' });
-    localCookie.set('role', data.role, { path: '/' });
+    Cookies.set('token', data.token, { path: '/' });
+    Cookies.set('role', data.role, { path: '/' });
     toast.success('Welcome back!');
     router.push('/admin');
   };
