@@ -36,7 +36,7 @@ export default function Accordian() {
           className="max-w-2xl"
           data-index={index}
         >
-          <div className="flex items-center cursor-pointer justify-between p-2 bg-gray-700 border">
+          <div className="flex items-center cursor-pointer justify-between p-2 bg-gray-700 border  rounded">
             <Typography type="header-caption" className="text-white">
               {question}
             </Typography>
@@ -46,7 +46,7 @@ export default function Accordian() {
           </div>
           <Typography
             type="header-caption"
-            className={`bg-gray-200 px-3 transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`bg-gray-100 text-gray-500 px-3 transition-all duration-300 ease-in-out overflow-hidden ${
               index == open
                 ? 'visible opacity-1 p-3'
                 : 'h-0 opacity-0 invisible'

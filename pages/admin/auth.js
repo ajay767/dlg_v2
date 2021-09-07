@@ -1,26 +1,28 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import AdmiPortal from "@components/layout/AdminPortal";
-import Typography from "@components/Typography";
-import TextInput from "@components/TextInput";
-import Button from "@components/Button";
-import { useRouter } from "next/router";
-import { login } from "./../../utils/api";
-import Cookies from "js-cookie";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import AdmiPortal from '@components/layout/AdminPortal';
+import Typography from '@components/Typography';
+import TextInput from '@components/TextInput';
+import Button from '@components/Button';
+import { useRouter } from 'next/router';
+import { login } from './../../utils/api';
+import Cookies from 'js-cookie';
 
 function Auth() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const onLoad = (data) => {
     console.log(data);
     const { token } = data;
     const { role } = data.user;
-    Cookies.set("token", token, { path: "" });
-    Cookies.set("role", role, { path: "" });
-    toast.success("Welcome to the Admin of DLG");
-    router.push("/admin");
+    Cookies.set('token', token, { path: '' });
+    Cookies.set('role', role, { path: '' });
+    toast.success('Welcome to the Admin of DLG');
+    router.push('/admin');
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const data = {
@@ -58,7 +60,7 @@ function Auth() {
               value={password}
               setValue={setPassword}
             />
-            <Button btnType="secondary" type="submit" className="my-4 ">
+            <Button btnType="primary" type="submit" className="my-4 ">
               Login
             </Button>
           </form>

@@ -1,6 +1,17 @@
 import React from 'react';
 import MoonLoader from 'react-spinners/MoonLoader';
 
-export default function Loader({ color = '#2274F0', size = 45 }) {
-  return <MoonLoader color={color} size={size} />;
+export default function Loader({
+  color = '#2274F0',
+  size = 45,
+  type = 'custom',
+}) {
+  switch (type) {
+    case 'primary': {
+      return <MoonLoader className="block" color={color} size={22} />;
+    }
+    default: {
+      return <MoonLoader color={color} size={size} />;
+    }
+  }
 }

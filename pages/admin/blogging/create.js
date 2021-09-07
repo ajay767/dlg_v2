@@ -14,7 +14,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createBlog } from "../../../utils/api";
 import toast from "react-hot-toast";
 const Editor = dynamic(
-  () => import("react-draft-wysiwyg").then((module) => module.Editor),
+  () => import('react-draft-wysiwyg').then((module) => module.Editor),
   {
     ssr: false,
   }
@@ -23,10 +23,10 @@ const Editor = dynamic(
 let LocalBase, db;
 function Blogging() {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    tags: "",
-    blogImage: "",
+    title: '',
+    description: '',
+    tags: '',
+    blogImage: '',
   });
   const [reset, setReset] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -48,7 +48,7 @@ function Blogging() {
   };
 
   const throtteledUpdateLocalBlogData = useCallback(
-    throttle(updateLocalBlogData, 2000),
+    throttle(updateLocalBlogData, 500),
     []
   );
 
@@ -80,7 +80,7 @@ function Blogging() {
   const HandleFormData = (value, field) => {
     const newForm = { ...formData };
     newForm[field] = value;
-    localStorage.setItem("formData", JSON.stringify(newForm));
+    localStorage.setItem('formData', JSON.stringify(newForm));
     setFormData(newForm);
   };
 
@@ -152,7 +152,7 @@ function Blogging() {
           closeModal={() => setShowModal(false)}
         />
       )}
-      {!showModal && <Navbar navItem={routes["blogging"].navbar} />}
+      {!showModal && <Navbar navItem={routes['blogging'].navbar} />}
       <Content>
         {!showModal && (
           <Editor
@@ -166,11 +166,11 @@ function Blogging() {
               options: options,
               image: {
                 uploadCallback: uploadImageHandler,
-                inputAccept: "image/jpeg,image/jpg,image/png",
+                inputAccept: 'image/jpeg,image/jpg,image/png',
                 alt: { present: false, mandatory: false },
                 defaultSize: {
-                  height: "80px",
-                  width: "100%",
+                  height: '80px',
+                  width: '100%',
                 },
               },
             }}
@@ -195,6 +195,6 @@ function Blogging() {
 }
 const authProp = {
   component: Blogging,
-  allowed: ["admin"],
+  allowed: ['admin'],
 };
 export default withAuth(authProp);

@@ -15,9 +15,10 @@ function useUser() {
     setUser(user);
   };
   useEffect(async () => {
+    console.log("from server", Cookies.get());
     await getUser(onLoad);
     setLoading(false);
-  }, []);
+  }, [loading]);
   return { user, loading };
 }
 export default useUser;

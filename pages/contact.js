@@ -14,7 +14,6 @@ function contact() {
 
   return (
     <PageWrapper>
-      <h1>Hello this is my h1</h1>
       <div
         style={{
           backgroundImage:

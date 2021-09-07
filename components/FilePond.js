@@ -1,38 +1,46 @@
-import React, { useState } from 'react';
-import { FilePond, registerPlugin } from 'react-filepond';
+import React, { useState } from "react";
+
+// Import React FilePond
+import { FilePond, File, registerPlugin } from "react-filepond";
 
 // Import FilePond styles
-import 'filepond/dist/filepond.min.css';
+import "filepond/dist/filepond.min.css";
 
-// // Import the Image EXIF Orientation and Image Preview plugins
-// // Note: These need to be installed separately
-// // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
-// // Register the plugins
-registerPlugin(
-  FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview,
-  FilePondPluginImageCrop
-);
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-function FilePondComponent({ label }) {
+// Our app
+function FilePondComponent() {
   const [files, setFiles] = useState([]);
   return (
-    <div>
-      <label className="text-sm font-medium text-gray-400 mb-2">{label}</label>
+    <div className="App">
       <FilePond
         files={files}
         onupdatefiles={setFiles}
-        allowMultiple={false}
-        maxFiles={1}
-        allowImageCrop={true}
-        allowImagePreview={true}
-        imageCropAspectRatio={'16:9'}
-        server="http://localhost:4000/file"
-        name="filepond"
+        allowMultiple={true}
+        maxFiles={3}
+        server={{
+          url: "/api",
+          process: {
+            headers: {
+              authorization: "save your token over here",
+            },
+          },
+          onload: (res) => {
+            console.log(res);
+          },
+          onerror: (err) => {
+            console.log(err);
+          },
+        }}
+        name="files"
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />
     </div>

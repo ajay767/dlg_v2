@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-export { NavLink };
-
 NavLink.defaultProps = {
   exact: false,
 };
@@ -22,6 +20,8 @@ function NavLink({ href, exact, children, activeClassName, ...props }) {
     </Link>
   );
 }
+
+export { NavLink };
 
 NavLink.propTypes = {
   href: PropTypes.string.isRequired,

@@ -1,15 +1,15 @@
-import React from "react";
-import { CgClose } from "react-icons/cg";
-import Link from "next/link";
-import { Animated } from "react-animated-css";
+import React from 'react';
+import { CgClose } from 'react-icons/cg';
+import Link from 'next/link';
+import { Animated } from 'react-animated-css';
 
 const navLinks = [
-  { title: "Home", path: "/" },
-  { title: "Academics", path: "/" },
-  { title: "Gallery", path: "/" },
-  { title: "Career", path: "/blog/sdhs" },
-  { title: "Contact us", path: "/contact" },
-  { title: "About us", path: "/about" },
+  { title: 'Home', path: '/' },
+  { title: 'Academics', path: '/' },
+  { title: 'Gallery', path: '/' },
+  { title: 'Career', path: '/blog/sdhs' },
+  { title: 'Contact us', path: '/contact' },
+  { title: 'About us', path: '/about' },
 ];
 
 function MobileSidebar({ toggleSidebar, active = false }) {
@@ -20,8 +20,8 @@ function MobileSidebar({ toggleSidebar, active = false }) {
       isVisible={active}
     >
       <div
-        className={`block p-5  bg-blue-500 h-screen w-full transition-all ${
-          !active ? "transform translate-x-full" : ""
+        className={`block p-5  bg-blue-500 h-screen w-screen transition-all ${
+          !active ? 'transform translate-x-full' : ''
         }`}
       >
         <div

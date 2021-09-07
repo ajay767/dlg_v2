@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Section from '../layout/Section';
 import TextInput from '../TextInput';
 import Button from '../Button';
+import Link from 'next/link';
 
 function Footer() {
   const [Message, setMessage] = useState('Write Message');
@@ -26,10 +27,26 @@ function Footer() {
         <div className="flex justify-between md:justify-around items-start self-start ">
           <div className="text-gray-300">
             <span className="text-primary mb-2 text-sm font-bold">Links</span>
-            <p className="text-sm">Home</p>
-            <p className="text-sm">Blog</p>
-            <p className="text-sm">Contact us</p>
-            <p className="text-sm">About us</p>
+            <Link href="/">
+              <a>
+                <p className="text-sm">Home</p>
+              </a>
+            </Link>
+            <Link href="/blog">
+              <a>
+                <p className="text-sm">Blog</p>
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a>
+                <p className="text-sm">Contact us</p>
+              </a>
+            </Link>
+            <Link href="/about">
+              <a>
+                <p className="text-sm">About us</p>
+              </a>
+            </Link>
           </div>
           <div className="text-gray-300">
             <span className="text-primary mb-2 text-sm font-bold">Social</span>
