@@ -4,10 +4,6 @@
   }
 
   &__poster {
-    background-image: url('/assets/images/blur.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-
     @apply rounded-md my-2 h-64 lg:h-96 w-full object-cover overflow-hidden;
   }
 }

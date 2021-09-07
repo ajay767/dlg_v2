@@ -38,4 +38,8 @@ const UpdateEvent = () => {
   );
 };
 
-export default withAuth(UpdateEvent, '/admin/auth');
+const authProp = {
+  component: UpdateEvent,
+  allowed: ['super'],
+};
+export default withAuth(authProp);

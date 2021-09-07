@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import universalCookie from "universal-cookie";
 import AdmiPortal from "../layout/AdminPortal";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-
-const Cookie = new universalCookie();
+import Cookies from "js-cookie";
 
 function Wrapper({ children }) {
   const router = useRouter();
@@ -20,10 +18,12 @@ function Wrapper({ children }) {
     return true;
   });
 
-  const handleSignout = () => {
-    console.log("signing out!!");
-    Cookie.remove("token");
-    router.push("/");
+  const handleSignout = async () => {
+    console.log("Logging out...");
+    Cookies.remove("token", { path: "" });
+    Cookies.remove("role", { path: "" });
+    console.log(Cookies.get("token"));
+    router.push("/admin/auth");
   };
 
   useEffect(() => {

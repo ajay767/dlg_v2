@@ -8,26 +8,33 @@ const UpcomingFeature = () => {
 
 const adminRoutes = {
   events: {
-    path: "/admin/event",
+    path: '/admin/event',
+    access: ['super'],
     navbar: [
-      { title: "All", path: "/admin/event" },
-      { title: "Add", path: "/admin/event/add" },
-      { title: "Update", path: "/admin/event/update" },
+      { title: 'All', path: '/admin/event' },
+      { title: 'Add', path: '/admin/event/add' },
+      { title: 'Update', path: '/admin/event/update' },
     ],
   },
   academics: {
-    path: "/admin/academics",
+    path: '/admin/academics',
+    access: ['super'],
     navbar: [
-      { title: "Add", path: "/admin/academics" },
-      { title: "Update", path: "/admin/academics/update" },
+      { title: 'Add', path: '/admin/academics' },
+      { title: 'Update', path: '/admin/academics/update' },
     ],
   },
   blogging: {
-    path: "/admin/blogging",
+    path: '/admin/blogging',
+    access: ['admin', 'super'],
     navbar: [
-      { title: "Create", path: "/admin/blogging/create" },
-      { title: "Preview", path: "/admin/blogging/preview" },
+      { title: 'Create', path: '/admin/blogging/create' },
+      { title: 'Preview', path: '/admin/blogging/preview' },
     ],
+  },
+  setting: {
+    path: '/admin/setting',
+    access: ['admin', 'super'],
   },
 };
 

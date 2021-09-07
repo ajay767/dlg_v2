@@ -1,23 +1,23 @@
-import { useState } from "react";
-import withAuth from "@lib/withAuth";
-import routes from "@components/admin/routes";
-import NavBar from "@components/admin/Navbar";
-import Wrapper from "@components/admin/Wrapper";
-import Content from "@components/admin/Content";
-import TextInput from "@components/TextInput";
-import Button from "@components/Button";
-import Typography from "@components/Typography";
-import FilePondComponent from "@components/FilePond";
+import { useState } from 'react';
+import withAuth from '@lib/withAuth';
+import routes from '@components/admin/routes';
+import NavBar from '@components/admin/Navbar';
+import Wrapper from '@components/admin/Wrapper';
+import Content from '@components/admin/Content';
+import TextInput from '@components/TextInput';
+import Button from '@components/Button';
+import Typography from '@components/Typography';
+import FilePondComponent from '@components/FilePond';
 
 const AddMaterial = () => {
   const [formData, setFormData] = useState({
-    branch: "",
-    semester: "",
-    year: "",
-    subject: "",
-    material: "",
-    subjectCode: "",
-    tags: "",
+    branch: '',
+    semester: '',
+    year: '',
+    subject: '',
+    material: '',
+    subjectCode: '',
+    tags: '',
   });
 
   const handleFormSubmit = (e) => {
@@ -32,8 +32,8 @@ const AddMaterial = () => {
   };
 
   const renderPins = () => {
-    return formData.tags.split(",").map((item, index) => {
-      if (item !== "" || item !== " ") {
+    return formData.tags.split(',').map((item, index) => {
+      if (item !== '' || item !== ' ') {
         return (
           <p
             key={index}
@@ -48,7 +48,7 @@ const AddMaterial = () => {
 
   return (
     <Wrapper>
-      <NavBar navItem={routes["academics"].navbar} />
+      <NavBar navItem={routes['academics'].navbar} />
       <Content>
         <Typography type="section" className="text-gray-500">
           Add new Material
@@ -61,55 +61,50 @@ const AddMaterial = () => {
           <TextInput
             name="branch"
             type="text"
-            placeholder="Branch"
             label="Branch"
             value={formData.branch}
-            setValue={(value) => handleFormInput(value, "branch")}
+            setValue={(value) => handleFormInput(value, 'branch')}
           />
 
           <TextInput
             name="semester"
             type="text"
-            placeholder="Semester"
             label="Semester"
             value={formData.semester}
-            setValue={(value) => handleFormInput(value, "semester")}
+            setValue={(value) => handleFormInput(value, 'semester')}
           />
 
           <TextInput
             name="year"
             type="number"
-            placeholder="year"
             label="Year"
             value={formData.year}
-            setValue={(value) => handleFormInput(value, "year")}
+            setValue={(value) => handleFormInput(value, 'year')}
           />
 
           <TextInput
             name="subject"
             type="text"
-            placeholder="Subject Name"
             label="Subject"
             value={formData.subject}
-            setValue={(value) => handleFormInput(value, "subject")}
+            setValue={(value) => handleFormInput(value, 'subject')}
           />
           <TextInput
             name="subjectCode"
             type="number"
-            placeholder="Subject code"
             label="Subject Code"
             value={formData.subjectCode}
-            setValue={(value) => handleFormInput(value, "subjectCode")}
+            setValue={(value) => handleFormInput(value, 'subjectCode')}
           />
 
           <TextInput
             name="tags"
             label="Tags"
             value={formData.tags}
-            setValue={(value) => handleFormInput(value, "tags")}
+            setValue={(value) => handleFormInput(value, 'tags')}
           />
           <div
-            style={{ minHeight: "35px" }}
+            style={{ minHeight: '35px' }}
             className="p-2 border border-gray-400 border-dashed rounded-md"
           >
             {!Boolean(formData.tags.length) && (
@@ -132,4 +127,9 @@ const AddMaterial = () => {
   );
 };
 
-export default withAuth(AddMaterial, "/admin/auth");
+const authProp = {
+  component: AddMaterial,
+  allowed: ['super'],
+};
+
+export default withAuth(authProp);

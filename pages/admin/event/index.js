@@ -32,5 +32,8 @@ const AllEvents = () => {
     </Wrapper>
   );
 };
-
-export default withAuth(AllEvents, '/admin/auth');
+const authProp = {
+  component: AllEvents,
+  allowed: ['super'],
+};
+export default withAuth(authProp);
