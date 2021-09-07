@@ -46,7 +46,7 @@ function Blogging() {
   };
 
   const throtteledUpdateLocalBlogData = useCallback(
-    throttle(updateLocalBlogData, 2000),
+    throttle(updateLocalBlogData, 500),
     []
   );
 

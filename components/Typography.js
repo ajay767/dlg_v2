@@ -76,6 +76,16 @@ function Typography({ children, type, className, ...props }) {
         </p>
       );
     }
+    case 'lable': {
+      return (
+        <p
+          {...props}
+          className={`text-base font-medium text-gray-400  ${className}`}
+        >
+          {children}
+        </p>
+      );
+    }
     case 'list-item': {
       return (
         <li
@@ -94,7 +104,11 @@ function Typography({ children, type, className, ...props }) {
       );
     }
     default: {
-      return <p {...props}>{children}</p>;
+      return (
+        <p className={`typography   ${className}`} {...props}>
+          {children}
+        </p>
+      );
     }
   }
 }
@@ -110,6 +124,7 @@ Typography.propTypes = {
     'list-item',
     'blockquote',
     'caption',
+    'lable',
   ]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

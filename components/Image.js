@@ -37,7 +37,12 @@ const CustomImageComponent = ({
           />
         </div>
       ) : (
-        <div className={`${className}`}></div>
+        <div className={`${className} flex items-center justify-center`}>
+          <div
+            id="custom_spinner"
+            className="border-r-2 border-b-2 border-blue-500 p-2 rounded-full h-7 w-7"
+          ></div>
+        </div>
       )}
     </>
   );

@@ -6,6 +6,7 @@ import SwiperSection from '@swiper/SwiperSection';
 import SwiperNavigation from '@swiper/NavButton';
 import CustomImageComponent from '../components/Image';
 import Accordian from '@components/front/Accordian';
+import CoreTeam from '@components/front/CoreTeam';
 
 function TeamCard({ data }) {
   return (
@@ -108,8 +109,15 @@ function About() {
         </div>
       </Section>
       <Section>
-        <Accordian />
+        <div className="mb-10">
+          <Accordian />
+        </div>
       </Section>
+
+      <Section>
+        <CoreTeam />
+      </Section>
+
       <Section className="my-10">
         <div className="mb-5 flex items-center justify-between">
           <div>

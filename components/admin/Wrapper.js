@@ -21,8 +21,8 @@ function Wrapper({ children }) {
   });
 
   const handleSignout = () => {
-    localCookie.set('token', '', { expires: new Date(0) });
-    localCookie.set('role', '', { expires: new Date(0) });
+    localCookie.set('token', '', { expires: new Date(0), path: '/' });
+    localCookie.set('role', '', { expires: new Date(0), path: '/' });
     console.log('cookie removd');
     router.push('/');
   };

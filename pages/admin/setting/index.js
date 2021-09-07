@@ -12,6 +12,7 @@ import { HiBadgeCheck } from 'react-icons/hi';
 function Setting() {
   const [name, setName] = useState('Ajay Yadav');
   const [email, setEmail] = useState('aju9617@gmail.com');
+  const [domain, setDomain] = useState('Technical Head');
 
   return (
     <Wrapper>
@@ -45,6 +46,12 @@ function Setting() {
               className="mt-2"
             />
           </div>
+          <TextInput
+            label="Domain"
+            value={domain}
+            setValue={setDomain}
+            className="mt-2"
+          />
           <FilePond
             label="Picture"
             value={name}
