@@ -8,7 +8,11 @@ const logo = "/assets/images/logo_main.png";
 const DP = "/assets/images/user.png";
 
 const Header = ({ sidebarHandler, handleSignout }) => {
-  const user = useUser();
+  const { user, loading } = useUser();
+  console.log(user, loading);
+  if (loading) {
+    return null;
+  }
   return (
     <header className="flex justify-between items-center p-2 border border-gray-200">
       <div>

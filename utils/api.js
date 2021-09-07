@@ -25,10 +25,8 @@ export const getAllBlogs = async (onLoad, onError) => {
   try {
     const res = await api.get("/api/v2/blog/get-all-blogs");
     onLoad(res.data);
-    return "success";
   } catch (err) {
     onError("Server is Busy ! Pleasy try after some time");
-    return "fail";
   }
 };
 
@@ -61,9 +59,14 @@ export const login = async (data, onLoad) => {
 
 export const getUser = async (onLoad) => {
   try {
+    console.log("Hello from getUser", config);
     const user = await api.get("/api/v1/user/getcurrentuser", config);
+    console.log("Hello from getUser2");
+    console.log(user);
     onLoad(user.data.user);
   } catch (err) {
+    console.log(err);
+    console.log("Hello from getUser3");
     toast.error(`${err.response.data.message}`);
   }
 };
