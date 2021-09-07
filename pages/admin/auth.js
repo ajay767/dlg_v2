@@ -12,6 +12,7 @@ function Auth() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const onLoad = (data) => {
     console.log(data);
     const { token } = data;
@@ -21,6 +22,7 @@ function Auth() {
     toast.success('Welcome to the Admin of DLG');
     router.push('/admin');
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const data = {

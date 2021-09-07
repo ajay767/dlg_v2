@@ -2,13 +2,13 @@ import { Icon } from '@iconify/react';
 import barChartOutline from '@iconify/icons-eva/bar-chart-outline';
 import Link from 'next/link';
 import Button from '../Button';
-import useUser from './../../hook/useUser';
-import { useCallback, useEffect, useMemo } from 'react';
+import useUser from '@hook/useUser';
 const logo = '/assets/images/logo_main.png';
 const DP = '/assets/images/user.png';
 
 const Header = ({ sidebarHandler, handleSignout }) => {
   const user = useUser();
+  console.log(user);
   return (
     <header className="flex justify-between items-center p-2 border border-gray-200">
       <div>
