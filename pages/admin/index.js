@@ -6,7 +6,7 @@ function Admin() {
   return (
     <Wrapper>
       <Content>
-        <div className="bg-red-500  w-full h-96"></div>
+        <div className="w-full h-96">Hello</div>
       </Content>
     </Wrapper>
   );

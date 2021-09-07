@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import universalCookie from 'universal-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdmiPortal from '@components/layout/AdminPortal';
@@ -7,6 +8,8 @@ import TextInput from '@components/TextInput';
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
 
+const localCookie = new universalCookie();
+
 function Auth() {
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -14,11 +17,11 @@ function Auth() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    await axios.post('/api/login', {
+    const { data } = await axios.post('/api/login', {
       email,
       password,
     });
+    localCookie.set('token', data.token);
     toast.success('Welcome back!');
     router.push('/admin');
   };

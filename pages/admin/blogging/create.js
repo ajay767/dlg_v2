@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { options, blockType } from '@admin/editorOptions';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import withAuth from '@lib/withAuth';
@@ -8,8 +8,8 @@ import Navbar from '@admin/Navbar';
 import Content from '@admin/Content';
 import routes from '@admin/routes';
 import Button from '@components/Button';
+import { throttle } from 'lodash';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { useRouter } from 'next/router';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -18,16 +18,36 @@ const Editor = dynamic(
   }
 );
 
+let LocalBase, db;
 function Blogging() {
-  const router = useRouter();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  const updateLocalBlogData = async (content) => {
+    const blogs = await db.collection('blogs').get();
+    const isAlready = blogs.filter((blog) => blog.id === 1).length >= 1;
+    if (isAlready) {
+      db.collection('blogs').doc({ id: 1 }).update({
+        content: content,
+      });
+    } else {
+      db.collection('blogs').add({
+        id: 1,
+        content: content,
+      });
+    }
+  };
+
+  const throtteledUpdateLocalBlogData = useCallback(
+    throttle(updateLocalBlogData, 2000),
+    []
+  );
 
   const onEditorStateChange = async (currentEditorState) => {
     const editorBodyInString = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
-    localStorage.setItem('blog-draft', editorBodyInString);
     setEditorState(currentEditorState);
+    throtteledUpdateLocalBlogData(editorBodyInString);
   };
 
   const uploadImageHandler = async (file) => {
@@ -51,21 +71,36 @@ function Blogging() {
     const editorBodyInString = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
-    localStorage.setItem('blog-draft', editorBodyInString);
-    console.log(JSON.parse(editorBodyInString));
+    updateLocalBlogData(editorBodyInString);
   };
 
-  const ResetLocalStorageHandler = () => {
-    localStorage.removeItem('blog-draft');
-    router.reload(window.location.pathname);
+  const ResetLocalStorageHandler = async () => {
+    await db.collection('blogs').doc({ id: 1 }).delete();
+    setEditorState(EditorState.createEmpty());
   };
 
   useEffect(() => {
-    const rawDraft = localStorage.getItem('blog-draft');
-    if (rawDraft) {
-      const rawContentFromStore = convertFromRaw(JSON.parse(rawDraft));
-      setEditorState(EditorState.createWithContent(rawContentFromStore));
-    }
+    const init = async () => {
+      LocalBase = (await import('localbase')).default;
+      db = new LocalBase('db');
+    };
+    init();
+  }, []);
+
+  useEffect(() => {
+    const init = async () => {
+      LocalBase = (await import('localbase')).default;
+      db = new LocalBase('db');
+      const blogList = await db.collection('blogs').get();
+      const draftBlog = blogList.filter((blog) => blog.id === 1);
+      if (draftBlog.length > 0) {
+        const rawContentFromStore = convertFromRaw(
+          JSON.parse(draftBlog[0].content)
+        );
+        setEditorState(EditorState.createWithContent(rawContentFromStore));
+      }
+    };
+    init();
   }, []);
 
   return (

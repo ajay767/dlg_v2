@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import universalCookie from 'universal-cookie';
 import AdmiPortal from '../layout/AdminPortal';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import axios from 'axios';
+
+const localCookie = new universalCookie();
 
 function Wrapper({ children }) {
   const router = useRouter();
@@ -19,7 +21,7 @@ function Wrapper({ children }) {
   });
 
   const handleSignout = async () => {
-    await axios.get('/api/logout');
+    localCookie.remove('token');
     router.push('/');
   };
 

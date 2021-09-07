@@ -1,6 +1,7 @@
 import cookie from 'cookie';
 
 export default (req, res) => {
+  console.log('Incoming request for protect');
   const cookieStr = req.headers.cookie || '';
   const token = cookie.parse(cookieStr).token;
   if (!token) {
