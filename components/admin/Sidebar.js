@@ -10,7 +10,6 @@ const Sidebar = ({ handleSignout }) => {
   const renderSidebar = () => {
     return Object.keys(routes).map((route, index) => {
       let access = routes[route].access.includes(user.role);
-
       return (
         <NavLink
           activeClassName="active"

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import withAuth from '@lib/withAuth';
 import Wrapper from '@admin/Wrapper';
@@ -62,6 +63,16 @@ function Setting() {
           <Button btnType="primary">Update Profile</Button>
         </div>
       </Content>
+=======
+import withAuth from '@lib/withAuth';
+import Wrapper from '@admin/Wrapper';
+import Content from '@admin/Content';
+
+function Setting() {
+  return (
+    <Wrapper>
+      <Content>Profile page</Content>
+>>>>>>> b8fc0116716c8481e773461019d22b052d92aeec
     </Wrapper>
   );
 }

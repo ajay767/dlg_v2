@@ -12,7 +12,8 @@
           "@layout": "./components/layout", // to all defined components
           "@front": "./components/front", // to all defined components
           "@lib": "./lib", //  to all defined lib functions
-          "@admin": "./components/admin" // admin components
+          "@admin": "./components/admin", // admin components
+          "@hook": "./hook" // admin components
         }
       }
     ]

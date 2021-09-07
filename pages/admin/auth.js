@@ -1,31 +1,33 @@
 import { useState } from 'react';
-import universalCookie from 'universal-cookie';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdmiPortal from '@components/layout/AdminPortal';
 import Typography from '@components/Typography';
 import TextInput from '@components/TextInput';
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
-
-const localCookie = new universalCookie();
+import { login } from './../../utils/api';
+import Cookies from 'js-cookie';
 
 function Auth() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const onLoad = (data) => {
+    console.log(data);
+    const { token } = data;
+    const { role } = data.user;
+    Cookies.set('token', token, { path: '' });
+    Cookies.set('role', role, { path: '' });
+    toast.success('Welcome to the Admin of DLG');
+    router.push('/admin');
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post('/api/login', {
+    const data = {
       email,
       password,
-    });
-
-    localCookie.set('token', data.token, { path: '/' });
-    localCookie.set('role', data.role, { path: '/' });
-    toast.success('Welcome back!');
-    router.push('/admin');
+    };
+    login(data, onLoad);
   };
 
   return (
