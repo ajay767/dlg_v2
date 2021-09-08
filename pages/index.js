@@ -7,7 +7,6 @@ import { getAllBlogs } from '../utils/api';
 
 export const getStaticProps = async (ctx) => {
   const result = await getAllBlogs();
-  console.log(result.blog);
   return {
     props: {
       blog: result.blog,

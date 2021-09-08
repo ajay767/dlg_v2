@@ -11,13 +11,13 @@ function Blogging({ blogs }) {
   const nextRef = useRef(null);
 
   return (
-    <Section className='my-10'>
-      <div className='mb-5 flex items-center justify-between'>
+    <Section className="my-10">
+      <div className="mb-5 flex items-center justify-between">
         <div>
-          <Typography className='text-gray-700' type='secondary'>
+          <Typography className="text-gray-700" type="secondary">
             Latest Blogs
           </Typography>
-          <Typography className='text-gray-500' type='header-caption'>
+          <Typography className="text-gray-500" type="header-caption">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </Typography>
@@ -26,8 +26,8 @@ function Blogging({ blogs }) {
       </div>
 
       <SwiperSection
-        className='my-10'
-        data={new Array(15).fill(-1)}
+        className="my-10"
+        data={blogs}
         nextRef={nextRef}
         prevRef={prevRef}
         component={BlogCard}
