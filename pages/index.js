@@ -1,8 +1,20 @@
-import Section from "@components/layout/Section";
-import Landing from "@components/front/Landing";
-import UpcomingEvent from "@components/front/UpcomingEvent";
-import PageWrapper from "@components/layout/PageWrapper";
-import Blogging from "@components/front/BloggingSection";
+import Section from '@components/layout/Section';
+import Landing from '@components/front/Landing';
+import UpcomingEvent from '@components/front/UpcomingEvent';
+import PageWrapper from '@components/layout/PageWrapper';
+import Blogging from '@components/front/BloggingSection';
+import { getAllBlogs } from '../utils/api';
+
+export const getStaticProps = async (ctx) => {
+  const result = await getAllBlogs();
+  console.log(result.blog);
+  return {
+    props: {
+      blog: result.blog,
+    },
+    revalidate: 1,
+  };
+};
 
 function ShortHeader() {
   return (
@@ -11,16 +23,16 @@ function ShortHeader() {
         <p className="flex flex-col justify-center items-center ">
           <span
             style={{
-              WebkitTextStrokeWidth: "2px",
-              WebkitTextStrokeColor: "#c78426",
+              WebkitTextStrokeWidth: '2px',
+              WebkitTextStrokeColor: '#c78426',
             }}
             className="font-bold text-5xl text-white flex items-center "
           >
             45
             <span
               style={{
-                WebkitTextStrokeWidth: "0",
-                WebkitTextStrokeColor: "#c78426",
+                WebkitTextStrokeWidth: '0',
+                WebkitTextStrokeColor: '#c78426',
               }}
               className="text-gray-700 text-4xl"
             >
@@ -32,16 +44,16 @@ function ShortHeader() {
         <p className="flex flex-col justify-center items-center ">
           <span
             style={{
-              WebkitTextStrokeWidth: "2px",
-              WebkitTextStrokeColor: "#c78426",
+              WebkitTextStrokeWidth: '2px',
+              WebkitTextStrokeColor: '#c78426',
             }}
             className="font-bold text-5xl text-white flex items-center "
           >
             98
             <span
               style={{
-                WebkitTextStrokeWidth: "0",
-                WebkitTextStrokeColor: "#c78426",
+                WebkitTextStrokeWidth: '0',
+                WebkitTextStrokeColor: '#c78426',
               }}
               className="text-gray-700 text-4xl"
             >
@@ -53,16 +65,16 @@ function ShortHeader() {
         <p className="flex flex-col justify-center items-center ">
           <span
             style={{
-              WebkitTextStrokeWidth: "2px",
-              WebkitTextStrokeColor: "#c78426",
+              WebkitTextStrokeWidth: '2px',
+              WebkitTextStrokeColor: '#c78426',
             }}
             className="font-bold text-5xl text-white flex items-center "
           >
             23
             <span
               style={{
-                WebkitTextStrokeWidth: "0",
-                WebkitTextStrokeColor: "#c78426",
+                WebkitTextStrokeWidth: '0',
+                WebkitTextStrokeColor: '#c78426',
               }}
               className="text-gray-700 text-4xl"
             >
@@ -76,7 +88,8 @@ function ShortHeader() {
   );
 }
 
-function Main() {
+function Main({ blog }) {
+  console.log(blog);
   return (
     <div id="landing">
       <PageWrapper>
@@ -86,7 +99,7 @@ function Main() {
           <Section className="my-24  ">
             <UpcomingEvent />
           </Section>
-          <Blogging />
+          <Blogging blogs={blog} />
         </>
       </PageWrapper>
     </div>

@@ -8,13 +8,14 @@ import { getUser } from '../../utils/api';
 const Header = ({ sidebarHandler, handleSignout }) => {
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
+  const [photo, setPhoto] = useState('/assets/images/logo_main.png');
 
   useEffect(() => {
     const fetchUser = async () => {
       const { user } = await getUser();
-
       setName(user.name);
       setRole(user.role);
+      setPhoto(user.photo);
     };
 
     fetchUser();
@@ -45,7 +46,7 @@ const Header = ({ sidebarHandler, handleSignout }) => {
           </div>
           <img
             className="rounded-full h-10 w-10"
-            src="/assets/images/user.png"
+            src={photo}
             alt="display profile"
           />
         </div>

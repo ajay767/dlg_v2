@@ -8,27 +8,45 @@ import FilePond from '@components/FilePond';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import { HiBadgeCheck } from 'react-icons/hi';
-import useUser from '@hook/useUser';
 import { getUser } from '@utils/api';
+import { updateUser } from '@utils/api';
+import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 function Setting() {
+  const router = useRouter();
   const [name, setName] = useState('');
+  const [photo, setPhoto] = useState('/assets/images/user.png');
   const [coupan, setCoupan] = useState('');
-  const [email, setEmail] = useState('user.email');
+  const [email, setEmail] = useState('');
   const [domain, setDomain] = useState('Technical Head');
   const [files, setFiles] = useState([]);
 
-  const handleProfileUpdate = () => {
-    console.log(files);
+  const handleProfileUpdate = async () => {
+    const data = {
+      name,
+      email,
+      domain,
+      photo:
+        files.length > 0
+          ? files[files.length - 1].url
+          : '/assets/images/user.png',
+    };
+    const result = await updateUser(data);
+    if (result.status === 'success') {
+      toast.success('succesfully Updated');
+      router.reload(window.location.pathname);
+    }
   };
 
   useEffect(() => {
     const fetchUser = async () => {
       const { user } = await getUser();
-
       setName(user.name);
       setEmail(user.email);
       setCoupan(user.coupan);
+      setPhoto(user.photo);
+      setFiles([{ url: user.photo }]);
     };
 
     fetchUser();
@@ -43,7 +61,7 @@ function Setting() {
         <div className="mx-auto w-full md:w-10/12 xl:w-8/12">
           <div className="relative w-20 h-20  md:w-28  md:h-28  bg-gray-200 rounded-full  mx-auto">
             <Image
-              src="/assets/images/user.png"
+              src={photo}
               className=" w-full h-full   rounded-full "
               alt="User"
             />

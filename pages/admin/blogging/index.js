@@ -15,29 +15,7 @@ import { BsPlus } from 'react-icons/bs';
 let LocalBase, db;
 
 function Blogging() {
-  const [blogList, setBlogList] = useState([
-    {
-      title: 'hello',
-      description: 'description',
-      tags: 'tag,tag,tag',
-      blogImage: 'this is url',
-      content: JSON.stringify({
-        blocks: [
-          {
-            key: 'du8dd',
-            text: 'welcome back',
-            type: 'unstyled',
-            depth: 0,
-            inlineStyleRanges: [],
-            entityRanges: [],
-            data: {},
-          },
-        ],
-        entityMap: {},
-      }),
-    },
-  ]);
-
+  const [blogList, setBlogList] = useState([]);
   const [modalState, setModalState] = useState(false);
   const [blog, setBlog] = useState(null);
 
@@ -58,13 +36,9 @@ function Blogging() {
           </div>
           <div className="my-2 mb-4">
             <Typography type="section" className="mb-2">
-              Why you should join DLG
+              {blog.title}
             </Typography>
-            <Typography type="header-caption">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </Typography>
+            <Typography type="header-caption">{blog.description}</Typography>
           </div>
           <div>
             <Button
@@ -129,15 +103,15 @@ function Blogging() {
   }, []);
 
   useEffect(() => {
-    const onSuccess = (data) => {
-      console.log(data);
-      setBlogList(data.blog);
+    const fetchBlogs = async () => {
+      try {
+        const res = await getAllBlogs();
+        setBlogList(res.blog);
+      } catch (error) {
+        console.log(error);
+      }
     };
-
-    const onError = (error) => {
-      console.log(error);
-    };
-    getAllBlogs(onSuccess, onError);
+    fetchBlogs();
   }, []);
 
   return (
@@ -155,6 +129,7 @@ function Blogging() {
         )}
         <div className="w-full lg:w-10/12">
           {blogList.map((blog, index) => {
+            console.log(blog);
             return (
               <div
                 onClick={() => handleModalState(blog)}
@@ -163,16 +138,14 @@ function Blogging() {
               >
                 <Image
                   className="h-36 hidden md:block  md:w-3/12 mr-4 rounded "
-                  src="/assets/images/meet.jpg"
+                  src={blog.poster}
                 />
                 <div className="w-full md:w-9/12 relative">
                   <Typography type="section" className="font-bold">
-                    Why you should join DLG
+                    {blog.title}
                   </Typography>
                   <Typography type="header-caption" className="overflow-clip ">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s,
+                    {blog.description}
                   </Typography>
                 </div>
               </div>

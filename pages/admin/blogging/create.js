@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { options, blockType } from '@admin/editorOptions';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import withAuth from '@lib/withAuth';
+import axios from 'axios';
 import Wrapper from '@admin/Wrapper';
 import Navbar from '@admin/Navbar';
 import Content from '@admin/Content';
@@ -23,6 +24,7 @@ const Editor = dynamic(
 
 let LocalBase, db;
 function Blogging() {
+  const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -64,12 +66,12 @@ function Blogging() {
   const uploadImageHandler = async (file) => {
     try {
       const fd = new FormData();
-      fd.append('myFile', file, file.name);
-
-      const url = '/assets/images/tech2.jpg';
+      fd.append('file', file, file.name);
+      const url = `${process.env.NEXT_PUBLIC_SERVER}/api/v2/upload`;
+      const { data } = await axios.post(url, fd);
       const response = {
         data: {
-          link: url,
+          link: data.url,
         },
       };
       return response;
@@ -106,15 +108,14 @@ function Blogging() {
   const uploadEditorStateHandler = async () => {
     const body = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
     const author = 'DLG';
-    const { title, description, tags } = formData;
-    const poster = 'Hey Blogger';
+    const { title, description, tags, blogImage } = formData;
     const data = {
       author,
       title,
       description,
-      poster,
       body,
-      tags,
+      tags: typeof tags === 'object' ? tags : tags.split(','),
+      poster: files[0]?.url || blogImage,
     };
     await createBlog(data, onLoad);
   };
@@ -148,6 +149,8 @@ function Blogging() {
     <Wrapper>
       {showModal && (
         <BlogDetailForm
+          setFiles={setFiles}
+          files={files}
           formData={formData}
           HandleFormData={HandleFormData}
           closeModal={() => setShowModal(false)}
