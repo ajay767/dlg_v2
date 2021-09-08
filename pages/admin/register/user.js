@@ -1,22 +1,20 @@
-import { useState } from "react";
-import withAuth from "@lib/withAuth";
-import Wrapper from "@admin/Wrapper";
-import Content from "@admin/Content";
-import Button from "@components/Button";
-import TextInput from "@components/TextInput";
-import Typography from "@components/Typography";
-import Modal from "@components/Modal";
-import Loader from "@utils/Loader";
-import { Animated } from "react-animated-css";
-import { generateCaptcha } from "../../../utils/api";
+import { useState } from 'react';
+import withAuth from '@lib/withAuth';
+import Wrapper from '@admin/Wrapper';
+import Content from '@admin/Content';
+import Button from '@components/Button';
+import TextInput from '@components/TextInput';
+import Typography from '@components/Typography';
+import Modal from '@components/Modal';
+import { generateCaptcha } from '../../../utils/api';
 function RegisterUser() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [modal, setModal] = useState(false);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
 
   const HandleTokenGenerator = async () => {
     const result = await generateCaptcha({ name });
-    if (result.status === "success") {
+    if (result.status === 'success') {
       setModal(true);
       setToken(result.value);
     }
@@ -64,7 +62,7 @@ function RegisterUser() {
 }
 const authProps = {
   component: RegisterUser,
-  allowed: ["super"],
+  allowed: ['super'],
 };
 
 export default withAuth(authProps);

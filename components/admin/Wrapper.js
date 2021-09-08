@@ -19,9 +19,10 @@ function Wrapper({ children }) {
   });
 
   const handleSignout = async () => {
-    Cookies.remove('token', { path: '' });
-    Cookies.remove('role', { path: '' });
+    Cookies.remove('token', { path: '/' });
+    Cookies.remove('role', { path: '/' });
     router.push('/admin/auth');
+    window.location.reload();
   };
 
   useEffect(() => {

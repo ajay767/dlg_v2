@@ -12,13 +12,14 @@ function Auth() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [buttonState, setButtonState] = useState(false);
 
   const onLoad = (data) => {
-    console.log(data);
     const { token } = data;
     const { role } = data.user;
-    Cookies.set('token', token, { path: '' });
-    Cookies.set('role', role, { path: '' });
+    Cookies.set('token', token, { path: '/', expires: 60 * 60 });
+    Cookies.set('role', role, { path: '/', expires: 60 * 60 });
+    setButtonState(!buttonState);
     toast.success('Welcome to the Admin of DLG');
     router.push('/admin');
   };
@@ -29,6 +30,7 @@ function Auth() {
       email,
       password,
     };
+    setButtonState(!buttonState);
     login(data, onLoad);
   };
 
@@ -60,7 +62,12 @@ function Auth() {
               value={password}
               setValue={setPassword}
             />
-            <Button btnType="primary" type="submit" className="my-4 ">
+            <Button
+              loading={buttonState}
+              btnType="primary"
+              type="submit"
+              className="my-4 "
+            >
               Login
             </Button>
           </form>

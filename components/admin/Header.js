@@ -1,17 +1,24 @@
-import { Icon } from "@iconify/react";
-import barChartOutline from "@iconify/icons-eva/bar-chart-outline";
-import Link from "next/link";
-import Button from "../Button";
-import useUser from "../Custom Hooks/useUser";
-const logo = "/assets/images/logo_main.png";
-const DP = "/assets/images/user.png";
+import { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
+import barChartOutline from '@iconify/icons-eva/bar-chart-outline';
+import Link from 'next/link';
+import Button from '../Button';
+import { getUser } from '../../utils/api';
 
 const Header = ({ sidebarHandler, handleSignout }) => {
-  const { user, loading } = useUser();
-  console.log(user, loading);
-  if (loading) {
-    return null;
-  }
+  const [name, setName] = useState('');
+  const [role, setRole] = useState('');
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { user } = await getUser();
+
+      setName(user.name);
+      setRole(user.role);
+    };
+
+    fetchUser();
+  }, []);
   return (
     <header className="flex justify-between items-center p-2 border border-gray-200">
       <div>
@@ -23,18 +30,22 @@ const Header = ({ sidebarHandler, handleSignout }) => {
           />
         </div>
         <Link href="/admin">
-          <img className="hidden md:block h-12 " src={logo} alt="logo" />
+          <img
+            className="hidden md:block h-12 "
+            src={'/assets/images/logo_main.png'}
+            alt="logo"
+          />
         </Link>
       </div>
       <div className="flex items-center">
         <div className="flex mr-2">
           <div className="mr-4 flex flex-col justify-center items-start">
-            <h4 className="text-sm font-bold text-gray-700">Ram</h4>
-            <p className="text-xs text-gray-700">Singh</p>
+            <h4 className="text-sm font-bold text-gray-700">{name}</h4>
+            <p className="text-xs text-gray-700">{role}</p>
           </div>
           <img
             className="rounded-full h-10 w-10"
-            src={DP}
+            src="/assets/images/user.png"
             alt="display profile"
           />
         </div>

@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import propTypes from "prop-types";
-import { nanoid } from "nanoid";
+import React, { useMemo } from 'react';
+import propTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 function TextInput({
-  textbox = "primary",
+  textbox = 'primary',
   value,
   setValue,
-  type = "text",
+  type = 'text',
   className,
   inputClassName,
   label,
@@ -14,7 +14,7 @@ function TextInput({
 }) {
   const id = useMemo(() => nanoid(), []);
   switch (textbox) {
-    case "primary": {
+    case 'primary': {
       return (
         <div className={`rounded overflow-hidden ${className} `}>
           {label && (

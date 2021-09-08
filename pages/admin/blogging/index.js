@@ -18,12 +18,9 @@ function Blogging() {
         <div className="w-full lg:w-10/12">
           {new Array(6).fill(-2).map((blog, index) => {
             return (
-              <Link href="/admin/blogging">
+              <Link href="/admin/blogging" key={index}>
                 <a>
-                  <div
-                    className="mb-5 flex justify-between items-start"
-                    key={index}
-                  >
+                  <div className="mb-5 flex justify-between items-start">
                     <Image
                       className="h-36 hidden md:block  md:w-3/12 mr-4 rounded "
                       src="/assets/images/meet.jpg"
