@@ -1,18 +1,19 @@
-import dynamic from "next/dynamic";
-import { useState, useEffect, useCallback } from "react";
-import { options, blockType } from "@admin/editorOptions";
-import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
-import withAuth from "@lib/withAuth";
-import Wrapper from "@admin/Wrapper";
-import Navbar from "@admin/Navbar";
-import Content from "@admin/Content";
-import routes from "@admin/routes";
-import Button from "@components/Button";
-import { throttle } from "lodash";
-import BlogDetailForm from "@admin/blog/BlogDetailForm";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { createBlog } from "../../../utils/api";
-import toast from "react-hot-toast";
+import dynamic from 'next/dynamic';
+import { useState, useEffect, useCallback } from 'react';
+import { options, blockType } from '@admin/editorOptions';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import withAuth from '@lib/withAuth';
+import Wrapper from '@admin/Wrapper';
+import Navbar from '@admin/Navbar';
+import Content from '@admin/Content';
+import routes from '@admin/routes';
+import Button from '@components/Button';
+import { throttle } from 'lodash';
+import BlogDetailForm from '@admin/blog/BlogDetailForm';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { createBlog } from '../../../utils/api';
+import toast from 'react-hot-toast';
+
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
   {
@@ -33,14 +34,14 @@ function Blogging() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const updateLocalBlogData = async (content) => {
-    const blogs = await db.collection("blogs").get();
+    const blogs = await db.collection('blogs').get();
     const isAlready = blogs.filter((blog) => blog.id === 1).length >= 1;
     if (isAlready) {
-      db.collection("blogs").doc({ id: 1 }).update({
+      db.collection('blogs').doc({ id: 1 }).update({
         content: content,
       });
     } else {
-      db.collection("blogs").add({
+      db.collection('blogs').add({
         id: 1,
         content: content,
       });
@@ -48,7 +49,7 @@ function Blogging() {
   };
 
   const throtteledUpdateLocalBlogData = useCallback(
-    throttle(updateLocalBlogData, 500),
+    throttle(updateLocalBlogData, 1000),
     []
   );
 
@@ -63,9 +64,9 @@ function Blogging() {
   const uploadImageHandler = async (file) => {
     try {
       const fd = new FormData();
-      fd.append("myFile", file, file.name);
+      fd.append('myFile', file, file.name);
 
-      const url = "/assets/images/tech2.jpg";
+      const url = '/assets/images/tech2.jpg';
       const response = {
         data: {
           link: url,
@@ -85,8 +86,8 @@ function Blogging() {
   };
 
   const ResetLocalStorageHandler = async () => {
-    await db.collection("blogs").doc({ id: 1 }).delete();
-    localStorage.removeItem("formData");
+    await db.collection('blogs').doc({ id: 1 }).delete();
+    localStorage.removeItem('formData');
     setEditorState(EditorState.createEmpty());
   };
 
@@ -99,14 +100,14 @@ function Blogging() {
   const onLoad = (data) => {
     console.log(data);
     setReset(true);
-    toast.success("Blog Successfully Created");
+    toast.success('Blog Successfully Created');
   };
 
   const uploadEditorStateHandler = async () => {
     const body = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-    const author = "DLG";
+    const author = 'DLG';
     const { title, description, tags } = formData;
-    const poster = "Hey Blogger";
+    const poster = 'Hey Blogger';
     const data = {
       author,
       title,
@@ -120,9 +121,9 @@ function Blogging() {
 
   useEffect(() => {
     const init = async () => {
-      LocalBase = (await import("localbase")).default;
-      db = new LocalBase("db");
-      const blogList = await db.collection("blogs").get();
+      LocalBase = (await import('localbase')).default;
+      db = new LocalBase('db');
+      const blogList = await db.collection('blogs').get();
       const draftBlog = blogList.filter((blog) => blog.id === 1);
       if (draftBlog.length > 0) {
         const rawContentFromStore = convertFromRaw(
@@ -130,7 +131,7 @@ function Blogging() {
         );
         setEditorState(EditorState.createWithContent(rawContentFromStore));
       }
-      const newForm = JSON.parse(localStorage.getItem("formData"));
+      const newForm = JSON.parse(localStorage.getItem('formData'));
       console.log(newForm);
       if (newForm) {
         setFormData(newForm);

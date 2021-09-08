@@ -7,6 +7,7 @@ import TextInput from '@components/TextInput';
 import Typography from '@components/Typography';
 import Modal from '@components/Modal';
 import { generateCaptcha } from '../../../utils/api';
+
 function RegisterUser() {
   const [name, setName] = useState('');
   const [modal, setModal] = useState(false);
@@ -19,6 +20,7 @@ function RegisterUser() {
       setToken(result.value);
     }
   };
+
   return (
     <Wrapper>
       <Content>
