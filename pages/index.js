@@ -6,7 +6,7 @@ import Blogging from '@components/front/BloggingSection';
 import { getAllBlogs } from '../utils/api';
 
 export const getStaticProps = async (ctx) => {
-  // console.log(ctx.req.headers, 'from ctx');
+  console.log(ctx, 'from ctx');
   const result = await getAllBlogs();
   console.log(result.blog);
   return {
