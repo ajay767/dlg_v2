@@ -6,36 +6,46 @@ import routes from '@admin/routes';
 import Image from '@components/Image';
 import Typography from '@components/Typography';
 import Link from 'next/link';
+import { getAllBlogs } from '../../../utils/api';
+import { useEffect, useState } from 'react';
 
 function Blogging() {
+  const [blogs, setBlogs] = useState([]);
+  console.log(blogs);
+  useEffect(async () => {
+    try {
+      const result = await getAllBlogs();
+      setBlogs([...result.blog]);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   return (
     <Wrapper>
       <Navbar navItem={routes['blogging'].navbar} />
-      <Content className="text-gray-500">
-        <Typography type="section" className="mb-5">
+      <Content className='text-gray-500'>
+        <Typography type='section' className='mb-5'>
           All Blogs
         </Typography>
-        <div className="w-full lg:w-10/12">
-          {new Array(6).fill(-2).map((blog, index) => {
+        <div className='w-full lg:w-10/12'>
+          {blogs.map((blog, index) => {
             return (
-              <Link href="/admin/blogging" key={index}>
+              <Link href='/admin/blogging' key={blog._id}>
                 <a>
-                  <div className="mb-5 flex justify-between items-start">
+                  <div className='mb-5 flex justify-between items-start'>
                     <Image
-                      className="h-36 hidden md:block  md:w-3/12 mr-4 rounded "
-                      src="/assets/images/meet.jpg"
+                      className='h-36 hidden md:block  md:w-3/12 mr-4 rounded '
+                      src='/assets/images/meet.jpg'
                     />
-                    <div className="w-full md:w-9/12">
-                      <Typography type="section" className="font-bold">
-                        Why you should join DLG
+                    <div className='w-full md:w-9/12'>
+                      <Typography type='section' className='font-bold'>
+                        {blog.title}
                       </Typography>
                       <Typography
-                        type="header-caption"
-                        className="overflow-clip "
+                        type='header-caption'
+                        className='overflow-clip '
                       >
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
+                        {blog.description}
                       </Typography>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Loader = (
   <div
@@ -8,7 +8,7 @@ const Loader = (
 );
 
 function Button({
-  btnType = 'not-specified',
+  btnType = "not-specified",
   children,
   disabled = false,
   className,
@@ -16,12 +16,12 @@ function Button({
   ...props
 }) {
   switch (btnType) {
-    case 'primary': {
+    case "primary": {
       return (
         <button
           disabled={disabled}
           className={` ${className}  btn ${
-            disabled ? 'bg-gray-400' : 'bg-primary-dark'
+            disabled ? "bg-gray-400" : "bg-primary-dark"
           }`}
           {...props}
         >
@@ -30,13 +30,13 @@ function Button({
       );
     }
 
-    case 'secondary': {
+    case "secondary": {
       return (
         <button
           {...props}
           disabled={disabled}
           className={` ${className} btn ${
-            disabled ? 'bg-gray-400' : 'bg-primary-light'
+            disabled ? "bg-gray-400" : "bg-primary-light"
           } `}
         >
           {loading ? Loader : children}
@@ -44,32 +44,32 @@ function Button({
       );
     }
 
-    case 'loading': {
+    case "loading": {
       return (
         <button
           disabled={disabled}
           className={` ${className}  btn ${
-            disabled ? 'bg-gray-400' : 'bg-primary-dark'
+            disabled ? "bg-gray-400" : "bg-primary-dark"
           }`}
           {...props}
         ></button>
       );
     }
 
-    case 'hero': {
+    case "hero": {
       return (
         <button
           {...props}
           disabled={disabled}
           className={` ${className} btn_hero  border border-primary-dark ${
-            disabled ? 'bg-gray-400' : 'bg-primary-dark'
+            disabled ? "bg-gray-400" : "bg-primary-dark"
           } `}
         >
           {loading ? Loader : children}
         </button>
       );
     }
-    case 'outline': {
+    case "outline": {
       return (
         <button
           {...props}
@@ -81,13 +81,13 @@ function Button({
       );
     }
 
-    case 'small': {
+    case "small": {
       return (
         <button
           {...props}
           disabled={disabled}
           className={` ${className} btn btn-small ${
-            disabled ? 'bg-gray-400' : 'bg-primary-dark'
+            disabled ? "bg-gray-400" : "bg-primary-dark"
           } `}
         >
           {loading ? Loader : children}
@@ -99,7 +99,7 @@ function Button({
       return (
         <button
           disabled={disabled}
-          className={` ${className} btn ${disabled ? 'bg-gray-400' : ''}`}
+          className={` ${className} btn ${disabled ? "bg-gray-400" : ""}`}
           {...props}
         >
           {loading ? Loader : children}

@@ -28,14 +28,13 @@ export const createBlog = async (data, onLoad) => {
   }
 };
 
-export const getAllBlogs = async (onLoad, onError) => {
+export const getAllBlogs = async () => {
   try {
     const res = await api.get('/api/v2/blog/get-all-blogs');
-    onLoad(res.data);
-    return 'success';
+    return { status: 'success', ...res.data };
   } catch (err) {
-    onError('Server is Busy ! Pleasy try after some time');
-    return 'fail';
+    toast.error('Server is Busy ! Pleasy try after some time');
+    return { status: 'fail' };
   }
 };
 
@@ -70,6 +69,7 @@ export const getUser = async () => {
   try {
     const response = await api.get('/api/v1/user/getcurrentuser', getConfig());
     const user = { user: response.data.user, error: false };
+    console.log(user);
     return user;
   } catch (err) {
     toast.error(`${err.response.data.message}`);
@@ -89,5 +89,23 @@ export const generateCaptcha = async (data) => {
   } catch (err) {
     toast.error(`${err.response.data.message}`);
     return { error: 'fail' };
+  }
+};
+
+export const updateUser = async (data) => {
+  try {
+    console.log(data);
+    const current_user = await getUser();
+    console.log(current_user.user);
+    const { _id } = current_user.user;
+    const res = await api.patch(
+      `/api/v1/user/updateuser/${_id}`,
+      data,
+      getConfig()
+    );
+    return { status: 'success' };
+  } catch (err) {
+    toast.error(`${err.response}`);
+    return { status: 'fail' };
   }
 };

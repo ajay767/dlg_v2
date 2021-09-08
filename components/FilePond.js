@@ -21,14 +21,14 @@ function FilePondComponent({ label, className, files, setFiles }) {
   const [filepondFiles, setFilepondFiles] = useState([]);
   return (
     <div className={`${className}`}>
-      <label className="text-base font-medium text-gray-400 mb-2">
+      <label className='text-base font-medium text-gray-400 mb-2'>
         {label}
       </label>
       <FilePond
         files={filepondFiles}
         onupdatefiles={setFilepondFiles}
-        allowMultiple={true}
-        maxFiles={3}
+        allowMultiple={false}
+        maxFiles={1}
         server={{
           url: `${process.env.NEXT_PUBLIC_SERVER}/api/v2/upload`,
           process: {
@@ -44,7 +44,7 @@ function FilePondComponent({ label, className, files, setFiles }) {
             },
           },
         }}
-        name="file"
+        name='file'
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />
     </div>
