@@ -1,6 +1,6 @@
-import { BiMenu } from "react-icons/bi";
-import Section from "../layout/Section";
-import Link from "next/link";
+import { BiMenu } from 'react-icons/bi';
+import Section from '../layout/Section';
+import Link from 'next/link';
 
 function Header({ toggleSidebar }) {
   return (
@@ -21,7 +21,7 @@ function Header({ toggleSidebar }) {
           <Link href="/">
             <a className="text-gray-600 text-base cursor-pointer">Gallery</a>
           </Link>
-          <Link href="/blog/23gbbdsj">
+          <Link href="/blog/613a2e614ef35b9dc25dbb31">
             <a className="text-gray-600 text-base cursor-pointer">Career</a>
           </Link>
           <Link href="/contact">

@@ -9,9 +9,11 @@ function BlogCard({ data }) {
         alt="blog card"
         src={data.poster}
       />
-      <h3 className="my-2 text-xl font-bold text-gray-700">{data.title}</h3>
+      <h3 className="my-2 text-xl font-bold text-gray-700 truncate">
+        {data.title}
+      </h3>
       <p className="text-sm text-gray-600  ">{data.description}</p>
-      <Link href="/blog/sd">
+      <Link href={`/blog/${data._id}`}>
         <a>
           <Button className="my-4" btnType="small">
             Read more

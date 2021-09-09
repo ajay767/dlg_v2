@@ -3,14 +3,13 @@ import Section from '@layout/Section';
 import BlogCard from '@front/BlogCard';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
-import BlogMarkdown from '@components/BlogMarkdown';
 
 import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
 import PageWrapper from '../../components/layout/PageWrapper';
 
 import { getAllBlogs, getBlog } from '@utils/api';
-import BlogMarkDown from '@components/BlogMarkDown';
+import BlogMarkDown from '@components/BlogMarkdown';
 
 function BlogPage({ blog, blogs }) {
   const prevRef = useRef(null);
