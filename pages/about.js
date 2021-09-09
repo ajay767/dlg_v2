@@ -7,6 +7,7 @@ import SwiperNavigation from '@swiper/NavButton';
 import CustomImageComponent from '../components/Image';
 import Accordian from '@components/front/Accordian';
 import CoreTeam from '@components/front/CoreTeam';
+import Image from 'next/image';
 
 function TeamCard({ data }) {
   return (

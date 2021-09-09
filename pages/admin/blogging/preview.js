@@ -31,7 +31,7 @@ function Preview() {
     <Wrapper>
       <Navbar navItem={routes['blogging'].navbar} />
       <Content>
-        <div className="w-full lg:w-10/12">
+        <div className='w-full lg:w-10/12'>
           {mounted && <BlogMarkdown data={data} />}
         </div>
       </Content>

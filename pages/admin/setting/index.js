@@ -8,7 +8,6 @@ import FilePond from '@components/FilePond';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import { HiBadgeCheck } from 'react-icons/hi';
-import useUser from '@hook/useUser';
 import { getUser } from '@utils/api';
 import { updateUser } from '@utils/api';
 import { useRouter } from 'next/router';
@@ -17,8 +16,9 @@ import toast from 'react-hot-toast';
 function Setting() {
   const router = useRouter();
   const [name, setName] = useState('');
+  const [photo, setPhoto] = useState('/assets/images/user.png');
   const [coupan, setCoupan] = useState('');
-  const [email, setEmail] = useState('user.email');
+  const [email, setEmail] = useState('');
   const [domain, setDomain] = useState('Technical Head');
   const [files, setFiles] = useState([]);
 
@@ -27,7 +27,10 @@ function Setting() {
       name,
       email,
       domain,
-      photo: files.length > 0 ? files[0].url : '',
+      photo:
+        files.length > 0
+          ? files[files.length - 1].url
+          : '/assets/images/user.png',
     };
     const result = await updateUser(data);
     if (result.status === 'success') {
@@ -42,6 +45,8 @@ function Setting() {
       setName(user.name);
       setEmail(user.email);
       setCoupan(user.coupan);
+      setPhoto(user.photo);
+      setFiles([{ url: user.photo }]);
     };
 
     fetchUser();
@@ -50,59 +55,55 @@ function Setting() {
   return (
     <Wrapper>
       <Content>
-        <Typography type='section' className='mb-2 text-gray-500'>
+        <Typography type="section" className="mb-2 text-gray-500">
           Profile
         </Typography>
-        <div className='mx-auto w-full md:w-10/12 xl:w-8/12'>
-          <div className='relative w-20 h-20  md:w-28  md:h-28  bg-gray-200 rounded-full  mx-auto'>
+        <div className="mx-auto w-full md:w-10/12 xl:w-8/12">
+          <div className="relative w-20 h-20  md:w-28  md:h-28  bg-gray-200 rounded-full  mx-auto">
             <Image
-              src={
-                files.length > 0
-                  ? files[0].url
-                  : 'https://res.cloudinary.com/dazsoonxb/image/upload/v1631084985/vwkptfla8ebfvu0hjtgx.png'
-              }
-              className=' w-full h-full   rounded-full '
-              alt='User'
+              src={photo}
+              className=" w-full h-full   rounded-full "
+              alt="User"
             />
             <HiBadgeCheck
               size={28}
-              className='text-secondary absolute bottom-0 right-0 rounded-full bg-white '
+              className="text-secondary absolute bottom-0 right-0 rounded-full bg-white "
             />
           </div>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <TextInput
-              label='Name'
+              label="Name"
               value={name}
               setValue={setName}
-              className='mt-2'
+              className="mt-2"
             />
             <TextInput
-              label='Email'
+              label="Email"
               value={email}
               setValue={setEmail}
-              className='mt-2'
+              className="mt-2"
             />
           </div>
           <TextInput
-            label='Domain'
+            label="Domain"
             value={domain}
             setValue={setDomain}
-            className='mt-2'
+            className="mt-2"
           />
           <FilePond
-            label='Picture'
+            label="Picture"
             value={files}
             setValue={setFiles}
-            className='mt-2'
+            className="mt-2"
             files={files}
             setFiles={setFiles}
           />
           <TextInput
             disabled
             value={coupan.toUpperCase()}
-            label='Security Token'
+            label="Security Token"
           />
-          <Button onClick={handleProfileUpdate} btnType='primary'>
+          <Button onClick={handleProfileUpdate} btnType="primary">
             Update Profile
           </Button>
         </div>

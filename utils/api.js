@@ -38,16 +38,23 @@ export const getAllBlogs = async () => {
   }
 };
 
-export const getBlog = async (data, onLoad, onError) => {
+export const getBlog = async (data) => {
   try {
     const { id } = data;
     const res = await api.get(`/api/v2/blog/get-blog/${id}`);
-    onLoad(res.data);
+    return res.data.blog;
   } catch (err) {
-    onError('Server is Busy ! Pleasy try after some time');
+    toast.error(err.response.data.message);
   }
 };
-
+export const updateBlog = async (id, data, onLoad) => {
+  try {
+    const result = await api.patch(`/api/v2/blog/update-blog/${id}`, data);
+    onLoad(result.data.blog);
+  } catch (err) {
+    toast.error(`${err.response.data.message}`);
+  }
+};
 export const signup = async (data, onLoad) => {
   try {
     const res = await api.post('/api/v1/user/signup', data);
