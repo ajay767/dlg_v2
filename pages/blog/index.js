@@ -4,6 +4,7 @@ import Section from '@layout/Section';
 import Image from '@components/Image';
 import Typography from '@components/Typography';
 import Link from 'next/link';
+
 function index() {
   return (
     <PageWrapper>
