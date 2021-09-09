@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
 import withAuth from '@lib/withAuth';
 import Wrapper from '@admin/Wrapper';
 import Content from '@admin/Content';
@@ -8,49 +8,31 @@ import FilePond from '@components/FilePond';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import { HiBadgeCheck } from 'react-icons/hi';
-import { getUser } from '@utils/api';
 import { updateUser } from '@utils/api';
-import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
+import { Context as rootContext } from '@context/root';
 
 function Setting() {
-  const router = useRouter();
-  const [name, setName] = useState('');
-  const [photo, setPhoto] = useState('/assets/images/user.png');
-  const [coupan, setCoupan] = useState('');
-  const [email, setEmail] = useState('');
+  const user = useContext(rootContext);
+
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [domain, setDomain] = useState('Technical Head');
   const [files, setFiles] = useState([]);
 
   const handleProfileUpdate = async () => {
     const data = {
-      name,
-      email,
-      domain,
-      photo:
-        files.length > 0
-          ? files[files.length - 1].url
-          : '/assets/images/user.png',
+      name: user.name,
+      email: user.email,
+      domain: 'Technical head',
+      photo: files.length > 0 ? files[files.length - 1].url : user.photo,
     };
     const result = await updateUser(data);
     if (result.status === 'success') {
       toast.success('succesfully Updated');
-      router.reload(window.location.pathname);
+      user.fetchUser();
     }
   };
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { user } = await getUser();
-      setName(user.name);
-      setEmail(user.email);
-      setCoupan(user.coupan);
-      setPhoto(user.photo);
-      setFiles([{ url: user.photo }]);
-    };
-
-    fetchUser();
-  }, []);
 
   return (
     <Wrapper>
@@ -61,7 +43,7 @@ function Setting() {
         <div className="mx-auto w-full md:w-10/12 xl:w-8/12">
           <div className="relative w-20 h-20  md:w-28  md:h-28  bg-gray-200 rounded-full  mx-auto">
             <Image
-              src={photo}
+              src={user.photo}
               className=" w-full h-full   rounded-full "
               alt="User"
             />
@@ -100,7 +82,7 @@ function Setting() {
           />
           <TextInput
             disabled
-            value={coupan.toUpperCase()}
+            value={user.coupan.toUpperCase()}
             label="Security Token"
           />
           <Button onClick={handleProfileUpdate} btnType="primary">

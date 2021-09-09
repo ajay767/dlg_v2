@@ -13,7 +13,8 @@
           "@front": "./components/front",
           "@lib": "./lib",
           "@admin": "./components/admin",
-          "@hook": "./hook"
+          "@hook": "./hook",
+          "@context": "./context"
         }
       }
     ]
