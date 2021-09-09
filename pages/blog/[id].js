@@ -22,7 +22,7 @@ function BlogPage({ blog, blogs }) {
 
     window.disqus_config = function () {
       this.page.url = window.location.href;
-      this.page.identifier = 'ddhidhfu';
+      this.page.identifier = blog._id;
     };
 
     const script = document.createElement('script');
