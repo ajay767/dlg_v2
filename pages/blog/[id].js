@@ -9,7 +9,10 @@ import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
 import PageWrapper from '../../components/layout/PageWrapper';
 
-function BlogPage() {
+import { getAllBlogs, getBlog } from '@utils/api';
+import BlogMarkDown from '@components/BlogMarkDown';
+
+function BlogPage({ blog, blogs }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [loadCommentBtn, setLoadCommentBtn] = useState(true);
@@ -33,7 +36,7 @@ function BlogPage() {
     <PageWrapper>
       <Section>
         <div className="blog__container text-gray-600 mb-10">
-         <BlogMarkdown data={} />
+          <BlogMarkDown data={JSON.parse(blog.body)} />
           {loadCommentBtn && (
             <Button btnType="primary" onClick={loadComments}>
               Load Comments
@@ -56,7 +59,7 @@ function BlogPage() {
           <SwiperNavigation nextRef={nextRef} prevRef={prevRef} />
         </div>
         <SwiperSection
-          data={new Array(9).fill(2)}
+          data={blogs}
           nextRef={nextRef}
           prevRef={prevRef}
           component={BlogCard}
@@ -68,3 +71,37 @@ function BlogPage() {
 }
 
 export default BlogPage;
+
+export const getStaticPaths = async () => {
+  const result = await getAllBlogs();
+  let data;
+  if (result.status === 'fail') {
+    data = [];
+  } else {
+    data = result.blog;
+  }
+  const paths = data.map((blog) => {
+    return {
+      params: {
+        id: blog._id,
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const blog = await getBlog({ id: params.id });
+  const result = await getAllBlogs();
+  const blogs = result.blog;
+  return {
+    props: {
+      blog,
+      blogs: blogs,
+    },
+    revalidate: 3, // Incremental Site Generation
+  };
+};
