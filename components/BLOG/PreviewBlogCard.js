@@ -4,7 +4,7 @@ import { convertToRaw } from 'draft-js';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import BlogMarkdown from '@components/BlogMarkdown';
 import Typography from '../Typography';
-function PreviewBlogCard({ closePreviewModal, blogBody }) {
+export default function PreviewBlogCard({ closePreviewModal, blogBody }) {
   return (
     <Modal>
       <div className='bg-white w-11/12 h-2/3 md:w-8/12 lg:w-6/12 rounded p-3 md:p-5 overflow-y-scroll scrollbar-hide'>
@@ -24,8 +24,3 @@ function PreviewBlogCard({ closePreviewModal, blogBody }) {
     </Modal>
   );
 }
-const authProp = {
-  component: PreviewBlogCard,
-  allowed: ['admin'],
-};
-export default withAuth(authProp);

@@ -11,10 +11,12 @@ import router from 'next/router';
 import Button from '@components/Button';
 import { getAllBlogs } from '@utils/api';
 import { BsPlus } from 'react-icons/bs';
+import { useRouter } from 'next/router';
 
 let LocalBase, db;
 
 function Blogging() {
+  const router = useRouter();
   const [blogList, setBlogList] = useState([]);
   const [modalState, setModalState] = useState(false);
   const [blog, setBlog] = useState(null);
@@ -64,7 +66,7 @@ function Blogging() {
     );
   };
   const HandleBlogEdit = (blog) => {
-    console.log(blog._id);
+    router.push(`/admin/blogging/edit/${blog._id}`);
   };
   const handleModalState = (blog) => {
     if (blog) setBlog(blog);
