@@ -3,8 +3,6 @@ import Section from '@layout/Section';
 import BlogCard from '@front/BlogCard';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
-import Gist from 'react-gist';
-import CustomImageComponent from '../../components/Image';
 
 import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
@@ -23,7 +21,7 @@ function BlogPage({ blog, blogs }) {
 
     window.disqus_config = function () {
       this.page.url = window.location.href;
-      this.page.identifier = 'ddhidhfu';
+      this.page.identifier = blog_id;
     };
 
     const script = document.createElement('script');
