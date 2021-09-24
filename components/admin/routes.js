@@ -1,7 +1,7 @@
 const UpcomingFeature = () => {
   return (
-    <div className='upcoming__feature__section'>
-      <img src='/assets/images/upcoming_feature.png' alt='Upcoming feature' />
+    <div className="upcoming__feature__section">
+      <img src="/assets/images/upcoming_feature.png" alt="Upcoming feature" />
     </div>
   );
 };
@@ -41,7 +41,7 @@ const adminRoutes = {
     access: ['super'],
   },
   quiz: {
-    path: '/admin/quiz',
+    path: '/admin/quiz/create-question',
     access: ['admin', 'super'],
     navbar: [
       { title: 'Create Question', path: '/admin/quiz/create-question' },

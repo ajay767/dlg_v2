@@ -1,5 +1,4 @@
-import { useState, memo, useEffect, useCallback } from 'react';
-import { BsPlus } from 'react-icons/bs';
+import { useState, memo, useEffect } from 'react';
 import Typography from '@components/Typography';
 import Modal from '@components/Modal';
 import Button from '@components/Button';
@@ -39,21 +38,18 @@ function QuizDashboard({
   return (
     <div className=" bg-gray-100 rounded-md  p-4 text-gray-600">
       {quizEnd && (
-        <Modal>
-          <div className="h-44 relative  flex-center text-gray-700 rounded-md bg-white mx-4 p-5">
-            <Lottie />
-            <div className="cursor-pointer  absolute top-5 right-5 h-7 w-7 md:h-10 md:w-10 rounded-full bg-gray-200 flex-center ml-auto">
-              <BsPlus
-                onClick={() => {
-                  setQuizEnd(!quizEnd);
-                  router.push('/');
-                }}
-                size={30}
-                className="text-gray-700  transform rotate-45"
-              />
-            </div>
+        <Modal
+          title="Submitted successfully"
+          onClose={() => {
+            setQuizEnd(!quizEnd);
+            onSubmit();
+            router.push('/quiz');
+          }}
+        >
+          <Lottie />
+          <div className="my-10">
             <Typography
-              type="secondary"
+              type="content"
               className="text-center w-full md:w-6/12 mx-auto"
             >
               Thank You For Participation😃!!

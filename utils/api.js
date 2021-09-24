@@ -139,3 +139,53 @@ export const getQuiz = async (data) => {
     return { status: 'fail' };
   }
 };
+
+export const getLatestQuiz = async () => {
+  try {
+    const res = await api.get(`/api/v2/quiz/get-latest-quiz`);
+    return res.data;
+  } catch (error) {
+    toast.error(`${error.response}`);
+    return { status: 'fail' };
+  }
+};
+
+export const getAllQuestion = async () => {
+  try {
+    const response = await api.get('/api/v2/quiz/get-all-questions');
+    return response.data;
+  } catch (err) {
+    toast.error(`${err.response.data.message}`);
+    return { status: 'fail' };
+  }
+};
+
+export const createQuestion = async (data) => {
+  try {
+    const response = await api.post(
+      '/api/v2/quiz/create-question',
+      data,
+      getConfig()
+    );
+    toast.success('question created!');
+    return response.data;
+  } catch (err) {
+    toast.error(`${err.response.data.message}`);
+    return { status: 'fail' };
+  }
+};
+
+export const createQuiz = async (data) => {
+  try {
+    const response = await api.post(
+      '/api/v2/quiz/create-quiz',
+      data,
+      getConfig()
+    );
+    toast.success('quiz created!');
+    return response.data;
+  } catch (err) {
+    toast.error(`${err.response.data.message}`);
+    return { status: 'fail' };
+  }
+};

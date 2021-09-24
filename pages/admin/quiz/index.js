@@ -3,7 +3,7 @@ import Navbar from '@admin/Navbar';
 import Content from '@admin/Content';
 import routes from '@admin/routes';
 
-export default function index() {
+export default function Quiz() {
   return (
     <Wrapper>
       <Navbar navItem={routes['quiz'].navbar} />

@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { getLatestQuiz } from '@utils/api';
 import PageWrapper from '@layout/PageWrapper';
 import Section from '@layout/Section';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import Countdown from 'react-countdown';
 
-function index() {
+function Quiz({ quiz }) {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     const hour = Math.floor(hours / 10);
     const day = Math.floor(days / 10);
@@ -40,6 +41,7 @@ function index() {
       </div>
     );
   };
+
   return (
     <PageWrapper>
       <Section style={{ minHeight: '60vh' }}>
@@ -47,33 +49,56 @@ function index() {
           style={{ minHeight: '50vh' }}
           className="flex justify-center  items-center flex-col text-gray-600 "
         >
-          <Typography type="secondary" className="mb-2">
-            Quiz Mania
-          </Typography>
-          <Typography
-            type="content"
-            className="w-10/12 md:w-4/12 mx-auto text-center mb-10"
-          >
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical
-          </Typography>
-          <Typography type="primary">
-            <Countdown
-              renderer={renderer}
-              date={Date.now() + 5 * 24 * 60 * 60 * 1000}
-            />
-          </Typography>
-          <Link href="/quiz/614b8907fa70ca2c34297a1b">
-            <a>
-              <Button btnType="hero" className="my-5 bg-blue-500">
-                Enter
-              </Button>
-            </a>
-          </Link>
+          {quiz.title && (
+            <>
+              <Typography type="secondary" className="mb-2">
+                {quiz.title}
+              </Typography>
+              <Typography
+                type="content"
+                className="w-10/12 md:w-6/12 mx-auto text-center mb-10"
+              >
+                {quiz.description}
+              </Typography>
+              <Typography type="primary">
+                <Countdown renderer={renderer} date={quiz.startAt} />
+              </Typography>
+              <Link href={`/quiz/${quiz._id}`}>
+                <a>
+                  <Button btnType="hero" className="my-5 bg-blue-500">
+                    Enter
+                  </Button>
+                </a>
+              </Link>
+            </>
+          )}
+          {quiz.status === 'not found' && (
+            <>
+              <Typography type="primary">No Ongoing Quiz 😭</Typography>
+              <Link href="/">
+                <a>
+                  <Button btnType="hero" className="my-5">
+                    Go to home
+                  </Button>
+                </a>
+              </Link>
+            </>
+          )}
         </div>
       </Section>
     </PageWrapper>
   );
 }
 
-export default index;
+export default Quiz;
+
+export const getStaticProps = async () => {
+  const res = await getLatestQuiz();
+  console.log(res);
+  return {
+    props: {
+      quiz: res.quiz,
+    },
+    revalidate: 3,
+  };
+};
