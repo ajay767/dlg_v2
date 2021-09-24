@@ -1,26 +1,27 @@
-import { useState } from "react";
-import TextInput from "@components/TextInput";
-import Typography from "@components/Typography";
-import Button from "@components/Button";
-import FilePond from "@components/FilePond";
-import Section from "@layout/Section";
-import { signup } from "../../utils/api";
-import toast from "react-hot-toast";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
+import { useState } from 'react';
+import TextInput from '@components/TextInput';
+import Typography from '@components/Typography';
+import Button from '@components/Button';
+import FilePond from '@components/FilePond';
+import Section from '@layout/Section';
+import { signup } from '../../utils/api';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 function Signup() {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [signupToken, setSignupToken] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [files, setFiles] = useState([]);
+  const [signupToken, setSignupToken] = useState('');
   const onLoad = (data) => {
     console.log(data);
-    toast.success("Successfully Signed Up!!!");
-    Cookies.set("token", data.token, { path: "/admin" });
-    Cookies.set("role", data.user.role, { path: "/admin" });
-    router.push("/admin");
+    toast.success('Successfully Signed Up!!!');
+    Cookies.set('token', data.token, { path: '/admin' });
+    Cookies.set('role', data.user.role, { path: '/admin' });
+    router.push('/admin');
   };
   const handleSignup = (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ function Signup() {
       password,
       confirmPassword,
       coupan: signupToken,
+      photo: files[0]?.url || '',
     };
     signup(data, onLoad);
   };
@@ -75,7 +77,7 @@ function Signup() {
             setValue={setSignupToken}
           />
           <Typography type="lable">Profile</Typography>
-          <FilePond />
+          <FilePond files={files} setFiles={setFiles} />
           <Button btnType="primary" type="submit">
             Signup
           </Button>

@@ -26,7 +26,7 @@ const Draftjs = ({ initialState, onChange }) => {
           inputAccept: 'image/jpeg,image/jpg,image/png',
           alt: { present: false, mandatory: false },
           defaultSize: {
-            height: '80px',
+            height: '240px',
             width: '100%',
           },
         },

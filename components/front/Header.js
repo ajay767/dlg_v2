@@ -15,11 +15,11 @@ function Header({ toggleSidebar }) {
           <Link href="/">
             <a className="text-gray-600 text-base cursor-pointer">Home</a>
           </Link>
-          <Link href="/">
-            <a className="text-gray-600 text-base cursor-pointer">Academics</a>
+          <Link href="/quiz">
+            <a className="text-gray-600 text-base cursor-pointer">Quiz</a>
           </Link>
-          <Link href="/">
-            <a className="text-gray-600 text-base cursor-pointer">Gallery</a>
+          <Link href="/blog">
+            <a className="text-gray-600 text-base cursor-pointer">Blogs</a>
           </Link>
           <Link href="/blog/613a2e614ef35b9dc25dbb31">
             <a className="text-gray-600 text-base cursor-pointer">Career</a>

@@ -24,6 +24,10 @@ function Auth() {
     router.push('/admin');
   };
 
+  const onError = () => {
+    setButtonState(false);
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const data = {
@@ -31,7 +35,7 @@ function Auth() {
       password,
     };
     setButtonState(!buttonState);
-    login(data, onLoad);
+    login(data, onLoad, onError);
   };
 
   return (

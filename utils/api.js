@@ -2,7 +2,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 
-const api = axios.create({ baseURL: 'http://localhost:4000' });
+// const api = axios.create({ baseURL: 'http://localhost:4000' });
+const api = axios.create({ baseURL: 'https://dlgv2.herokuapp.com' });
 
 export const getConfig = () => {
   return {
@@ -45,6 +46,7 @@ export const getBlog = async (data) => {
     return res.data.blog;
   } catch (err) {
     toast.error(err.response.data.message);
+    return { status: 'fail' };
   }
 };
 export const updateBlog = async (id, data, onLoad) => {
@@ -63,12 +65,13 @@ export const signup = async (data, onLoad) => {
     toast.error(err.response.data.message);
   }
 };
-export const login = async (data, onLoad) => {
+export const login = async (data, onLoad, onError) => {
   try {
     const res = await api.post('/api/v1/user/login', data);
     onLoad(res.data);
   } catch (err) {
     toast.error(`${err.response.data.message}`);
+    onError();
   }
 };
 
@@ -113,6 +116,27 @@ export const updateUser = async (data) => {
     return { status: 'success' };
   } catch (err) {
     toast.error(`${err.response}`);
+    return { status: 'fail' };
+  }
+};
+
+export const getAllQuiz = async () => {
+  try {
+    const res = await api.get('/api/v2/quiz/get-all-quiz');
+    return res.data;
+  } catch (error) {
+    toast.error(`${err.response}`);
+    return { status: 'fail' };
+  }
+};
+
+export const getQuiz = async (data) => {
+  try {
+    const { id } = data;
+    const res = await api.get(`/api/v2/quiz/get-quiz/${id}`);
+    return res.data;
+  } catch (error) {
+    toast.error(`${error.response}`);
     return { status: 'fail' };
   }
 };

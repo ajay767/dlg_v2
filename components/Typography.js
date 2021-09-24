@@ -24,6 +24,14 @@ function Typography({ children, type, className, ...props }) {
       );
     }
 
+    case 'title': {
+      return (
+        <h4 {...props} className={`typography typography__title  ${className}`}>
+          {children}
+        </h4>
+      );
+    }
+
     case 'section': {
       return (
         <h3
@@ -125,6 +133,7 @@ Typography.propTypes = {
     'blockquote',
     'caption',
     'lable',
+    'title',
   ]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

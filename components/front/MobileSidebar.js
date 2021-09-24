@@ -5,9 +5,9 @@ import { Animated } from 'react-animated-css';
 
 const navLinks = [
   { title: 'Home', path: '/' },
-  { title: 'Academics', path: '/' },
-  { title: 'Gallery', path: '/' },
-  { title: 'Career', path: '/blog/sdhs' },
+  { title: 'Quiz', path: '/quiz' },
+  { title: 'Blogs', path: '/blog' },
+  { title: 'Career', path: '/blog/613a2e614ef35b9dc25dbb31' },
   { title: 'Contact us', path: '/contact' },
   { title: 'About us', path: '/about' },
 ];

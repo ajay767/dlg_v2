@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Section from '@layout/Section';
 import BlogCard from '@front/BlogCard';
 import Typography from '@components/Typography';
@@ -12,6 +13,11 @@ import { getAllBlogs, getBlog } from '@utils/api';
 import BlogMarkDown from '@components/BlogMarkdown';
 
 function BlogPage({ blog, blogs }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Typography type="content">Loading...</Typography>;
+  }
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [loadCommentBtn, setLoadCommentBtn] = useState(true);
@@ -86,6 +92,7 @@ export const getStaticPaths = async () => {
       },
     };
   });
+
   return {
     paths,
     fallback: true,
@@ -93,12 +100,15 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const blog = await getBlog({ id: params.id });
+  const response = await getBlog({ id: params.id });
   const result = await getAllBlogs();
   const blogs = result.blog;
+  if (response.status) {
+    return { notFound: true };
+  }
   return {
     props: {
-      blog,
+      blog: response,
       blogs: blogs,
     },
     revalidate: 3, // Incremental Site Generation

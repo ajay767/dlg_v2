@@ -1,6 +1,6 @@
 import { getPlaiceholder } from 'plaiceholder';
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://dlg-v2.vercel.app';
 
 const blurImg = async (req, res) => {
   try {
