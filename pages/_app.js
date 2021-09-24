@@ -6,10 +6,8 @@ import { Toaster } from 'react-hot-toast';
 function MyApp({ Component, pageProps }) {
   return (
     <Provider>
-      <>
-        <Toaster position="top-center" />
-        <Component {...pageProps} />
-      </>
+      <Toaster position="top-center" />
+      <Component {...pageProps} />
     </Provider>
   );
 }

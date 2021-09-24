@@ -1,8 +1,10 @@
 import Wrapper from '@admin/Wrapper';
+import withAuth from '@lib/withAuth';
 import Navbar from '@admin/Navbar';
 import Content from '@admin/Content';
 import routes from '@admin/routes';
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Button from '@components/Button';
 import { getAllQuestion, createQuiz } from '@utils/api';
 import Typography from '@components/Typography';
@@ -11,7 +13,7 @@ import { GrCheckbox } from 'react-icons/gr';
 import QuizQuestionPreview from '@components/admin/Quiz/quizQuestionPreview';
 import QuizDetailForm from '@components/admin/Quiz/quizDetailForm';
 
-export default function Quiz({ problems }) {
+function Quiz({ problems }) {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -63,13 +65,15 @@ export default function Quiz({ problems }) {
           modalProblem={modalProblem}
         />
       )}
-      {formModal && (
-        <QuizDetailForm
-          formData={formData}
-          setFormData={setFormData}
-          closeModal={() => setFormModal(false)}
-        />
-      )}
+      <AnimatePresence>
+        {formModal && (
+          <QuizDetailForm
+            formData={formData}
+            setFormData={setFormData}
+            closeModal={() => setFormModal(false)}
+          />
+        )}
+      </AnimatePresence>
       <Navbar navItem={routes['quiz'].navbar} />
       <Content>
         <Typography type="section" className="text-gray-600 mb-5">
@@ -124,11 +128,16 @@ export default function Quiz({ problems }) {
   );
 }
 
-export const getStaticProps = async () => {
+const authProp = {
+  component: Quiz,
+  allowed: ['super', 'admin'],
+};
+
+export default withAuth(authProp);
+
+Quiz.getInitialProps = async () => {
   const response = await getAllQuestion();
   return {
-    props: {
-      problems: response.questions,
-    },
+    problems: response.questions,
   };
 };

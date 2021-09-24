@@ -2,6 +2,7 @@ import Draftjs from '@admin/blog/DraftEditor';
 import { blogUploader, resetLocalStorage } from '@utils/blogHelper';
 import { useState, useEffect, useCallback } from 'react';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { AnimatePresence } from 'framer-motion';
 import withAuth from '@lib/withAuth';
 import Wrapper from '@admin/Wrapper';
 import Navbar from '@admin/Navbar';
@@ -109,14 +110,15 @@ function BlogCardComponent() {
 
   return (
     <Wrapper>
-      {showModal && (
-        <BlogDetailForm
-          setFormData={setFormData}
-          formData={formData}
-          closeModal={() => setShowModal(false)}
-        />
-      )}
-
+      <AnimatePresence>
+        {showModal && (
+          <BlogDetailForm
+            setFormData={setFormData}
+            formData={formData}
+            closeModal={() => setShowModal(false)}
+          />
+        )}
+      </AnimatePresence>
       <Navbar navItem={routes['blogging'].navbar} />
       <Content>
         {!showModal && (

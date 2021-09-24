@@ -5,6 +5,7 @@ import Button from '@components/Button';
 import Lottie from '@components/Lottie';
 import Countdown from 'react-countdown';
 import { useRouter } from 'next/router';
+import { AnimatePresence } from 'framer-motion';
 
 const MemoizedTimer = memo(Countdown);
 
@@ -37,26 +38,28 @@ function QuizDashboard({
 
   return (
     <div className=" bg-gray-100 rounded-md  p-4 text-gray-600">
-      {quizEnd && (
-        <Modal
-          title="Submitted successfully"
-          onClose={() => {
-            setQuizEnd(!quizEnd);
-            onSubmit();
-            router.push('/quiz');
-          }}
-        >
-          <Lottie />
-          <div className="my-10">
-            <Typography
-              type="content"
-              className="text-center w-full md:w-6/12 mx-auto"
-            >
-              Thank You For Participation😃!!
-            </Typography>
-          </div>
-        </Modal>
-      )}
+      <AnimatePresence>
+        {quizEnd && (
+          <Modal
+            title="Submitted successfully"
+            onClose={() => {
+              setQuizEnd(!quizEnd);
+              onSubmit();
+              router.push('/quiz');
+            }}
+          >
+            <Lottie />
+            <div className="my-10">
+              <Typography
+                type="content"
+                className="text-center w-full md:w-6/12 mx-auto"
+              >
+                Thank You For Participation😃!!
+              </Typography>
+            </div>
+          </Modal>
+        )}
+      </AnimatePresence>
       <Typography>Quiz menia</Typography>
       <Typography type="secondary">
         <MemoizedTimer

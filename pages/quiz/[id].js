@@ -28,7 +28,6 @@ function LatestQuiz({ current }) {
   const [questions, setQuestions] = useState(data.questions);
 
   const handleRegistrationForm = (data) => {
-    console.log(data);
     if (!data.name || !data.email) {
       toast.error('Invalid Form Details');
     } else {
@@ -45,7 +44,6 @@ function LatestQuiz({ current }) {
   };
 
   const handleSubmit = () => {
-    console.log(answer);
     localStorage.removeItem('quiz_player');
     setQuizEnd(true);
   };
@@ -127,7 +125,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const response = await getQuiz({ id: params.id });
-  console.log('response', response);
+
   if (response.status === 'fail') {
     return {
       notFound: true,

@@ -22,6 +22,7 @@
     "filepond-plugin-image-crop": "^2.0.6",
     "filepond-plugin-image-exif-orientation": "^1.0.11",
     "filepond-plugin-image-preview": "^4.6.8",
+    "framer-motion": "^4.1.17",
     "image-to-base64": "^2.2.0",
     "js-cookie": "^3.0.1",
     "localbase": "^0.7.5",

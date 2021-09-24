@@ -15,3 +15,13 @@ export default function Loader({
     }
   }
 }
+
+const data = {
+  name: 'Ajay yadav',
+  email: 'aju@gmail.com',
+  quizID: 'sdskj7776789',
+  answer: {
+    dsdsdsd: 'asasas',
+    Asasas: 'asasas',
+  },
+};

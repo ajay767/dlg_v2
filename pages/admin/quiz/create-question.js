@@ -1,4 +1,5 @@
 import Wrapper from '@admin/Wrapper';
+import withAuth from '@lib/withAuth';
 import Navbar from '@admin/Navbar';
 import Content from '@admin/Content';
 import routes from '@admin/routes';
@@ -6,8 +7,9 @@ import { useState } from 'react';
 import { createQuestion } from '@utils/api';
 import Button from '@components/Button';
 import TextInput from '@components/TextInput';
+import { stringPermutations } from '@utils/func';
 
-export default function Question() {
+function Question() {
   const [btnState, setBtnState] = useState(false);
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState([
@@ -33,9 +35,22 @@ export default function Question() {
 
   const HandleSubmitQuestion = async () => {
     setBtnState(true);
-    const data = { question, options };
+    let totalPerm = 1;
+    let str = Object.keys(options)
+      .map((curr, ind) => {
+        totalPerm *= ind + 1;
+        return ind;
+      })
+      .join('');
+    const suffeledOptions = stringPermutations(str);
+    const optionsArrangement = suffeledOptions[
+      Math.floor(Math.random() * totalPerm)
+    ]
+      .split('')
+      .map((i) => i * 1);
+    const suffeled = optionsArrangement.map((curr) => options[curr]);
+    const data = { question, options: suffeled };
     const res = await createQuestion(data);
-    console.log(res.finalQuestion);
     setBtnState(false);
   };
 
@@ -91,3 +106,9 @@ export default function Question() {
     </Wrapper>
   );
 }
+
+const authProp = {
+  component: Question,
+  allowed: ['super', 'admin'],
+};
+export default withAuth(authProp);

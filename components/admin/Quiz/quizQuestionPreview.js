@@ -1,6 +1,5 @@
 import Modal from '@components/Modal';
 import Typography from '@components/Typography';
-import { AiFillCloseCircle } from 'react-icons/ai';
 
 export default function quizQuestionPreview({
   problems,
