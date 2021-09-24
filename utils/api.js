@@ -79,7 +79,6 @@ export const getUser = async () => {
   try {
     const response = await api.get('/api/v1/user/getcurrentuser', getConfig());
     const user = { user: response.data.user, error: false };
-    console.log(user);
     return user;
   } catch (err) {
     toast.error(`${err.response.data.message}`);

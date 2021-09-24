@@ -107,7 +107,7 @@ function Typography({ children, type, className, ...props }) {
     case 'code': {
       return (
         <div className={`typography   ${className}`}>
-          <code className="code">{children}</code>
+          <code className='code'>{children}</code>
         </div>
       );
     }
