@@ -40,6 +40,14 @@ const adminRoutes = {
     path: '/admin/register/user',
     access: ['super'],
   },
+  quiz: {
+    path: '/admin/quiz/create-question',
+    access: ['admin', 'super'],
+    navbar: [
+      { title: 'Create Question', path: '/admin/quiz/create-question' },
+      { title: 'Create Quiz', path: '/admin/quiz/create-quiz' },
+    ],
+  },
 };
 
 export default adminRoutes;

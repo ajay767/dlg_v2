@@ -50,7 +50,11 @@ function Footer() {
           </div>
           <div className="text-gray-300">
             <span className="text-primary mb-2 text-sm font-bold">Social</span>
-            <p className="text-sm">Facebook</p>
+            <Link href="https://instagram.com/digitallearninggroupmits?igshid=uzkh9ru4r3dg">
+              <a>
+                <p className="text-sm">Facebook</p>
+              </a>
+            </Link>
             <p className="text-sm">Instagram</p>
             <p className="text-sm">Linkedin</p>
           </div>

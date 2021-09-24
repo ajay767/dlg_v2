@@ -111,7 +111,7 @@ function Blogging({ blogs }) {
   );
 }
 
-Blogging.getInitialProps = async (ctx) => {
+Blogging.getInitialProps = async () => {
   const { blog } = await getAllBlogs();
   return { blogs: blog };
 };

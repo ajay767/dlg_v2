@@ -20,7 +20,7 @@ function TextInput({
           {label && (
             <label
               htmlFor={id}
-              className="text-base font-medium text-gray-400 mb-2"
+              className='text-base font-medium text-gray-400 mb-2'
             >
               {label}
             </label>

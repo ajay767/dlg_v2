@@ -4,30 +4,30 @@ import { getAllQuiz, getQuiz } from '@utils/api';
 import PageWrapper from '@layout/PageWrapper';
 import Section from '@layout/Section';
 import Typography from '@components/Typography';
-import Response from '@public/response.json';
 
 import RegisterCard from '@components/front/Quiz/RegisterCard';
 import QuizDashboard from '@components/front/Quiz/QuizDashboard';
 import QuestionForm from '@components/front/Quiz/QuestionForm';
 import toast from 'react-hot-toast';
 
-const data = Response;
-console.log(data.quiz[0].questions);
+// const data = Response;
 
-function quiz() {
+function LatestQuiz({ current }) {
   const router = useRouter();
 
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+
+  const data = current.quiz;
+
   const [quiz, setquiz] = useState(false);
   const [quizEnd, setQuizEnd] = useState(false);
   const [answer, setAnswer] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [questions, setQuestions] = useState(data.quiz[0].questions);
+  const [questions, setQuestions] = useState(data.questions);
 
   const handleRegistrationForm = (data) => {
-    console.log(data);
     if (!data.name || !data.email) {
       toast.error('Invalid Form Details');
     } else {
@@ -44,7 +44,6 @@ function quiz() {
   };
 
   const handleSubmit = () => {
-    console.log(answer);
     localStorage.removeItem('quiz_player');
     setQuizEnd(true);
   };
@@ -54,14 +53,13 @@ function quiz() {
       <Section>
         <div className="mt-10 mb-10">
           <Typography className=" text-center text-gray-700" type="secondary">
-            Quiz Menia
+            {data.title}
           </Typography>
           <Typography
             className=" text-center text-gray-500"
             type="header-caption"
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            {data.description}
           </Typography>
         </div>
         <div className="flex-center">
@@ -102,7 +100,7 @@ function quiz() {
   );
 }
 
-export default quiz;
+export default LatestQuiz;
 
 export const getStaticPaths = async () => {
   const response = await getAllQuiz();
@@ -127,6 +125,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const response = await getQuiz({ id: params.id });
+
   if (response.status === 'fail') {
     return {
       notFound: true,
@@ -134,7 +133,7 @@ export const getStaticProps = async ({ params }) => {
   }
   return {
     props: {
-      quiz: response,
+      current: response,
     },
     revalidate: 3, // Incremental Site Generation
   };
