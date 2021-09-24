@@ -4,15 +4,36 @@ import Typography from '@components/Typography';
 import Button from '@components/Button';
 import FilePond from '@components/FilePond';
 import Section from '@layout/Section';
+import { signup } from '../../utils/api';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 function Signup() {
+  const router = useRouter();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [files, setFiles] = useState([]);
   const [signupToken, setSignupToken] = useState('');
-
+  const onLoad = (data) => {
+    console.log(data);
+    toast.success('Successfully Signed Up!!!');
+    Cookies.set('token', data.token, { path: '/admin' });
+    Cookies.set('role', data.user.role, { path: '/admin' });
+    router.push('/admin');
+  };
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log(email, password, signupToken);
+    const data = {
+      name,
+      email,
+      password,
+      confirmPassword,
+      coupan: signupToken,
+      photo: files[0]?.url || '',
+    };
+    signup(data, onLoad);
   };
 
   return (
@@ -30,6 +51,7 @@ function Signup() {
           onSubmit={handleSignup}
           className="grid grid-cols-1 gap-4 w-full md:w-8/12 xl:w-6/12 mx-auto my-10"
         >
+          <TextInput label="Name" type="text" value={name} setValue={setName} />
           <TextInput
             label="Email"
             type="email"
@@ -44,7 +66,7 @@ function Signup() {
           />
           <TextInput
             label="Confirm Password"
-            type="text"
+            type="password"
             value={confirmPassword}
             setValue={setConfirmPassword}
           />
@@ -55,7 +77,7 @@ function Signup() {
             setValue={setSignupToken}
           />
           <Typography type="lable">Profile</Typography>
-          <FilePond />
+          <FilePond files={files} setFiles={setFiles} />
           <Button btnType="primary" type="submit">
             Signup
           </Button>

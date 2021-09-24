@@ -1,0 +1,13 @@
+.quiz {
+  &_pagination {
+    @apply flex justify-center items-center;
+  }
+
+  &_page {
+    @apply flex justify-center items-center h-10 w-10 rounded-full border-2 mx-2 border-primary-dark text-gray-700;
+  }
+
+  &_active {
+    @apply flex justify-center items-center h-10 w-10 border-2 border-primary-dark rounded-full mx-2 text-white bg-primary-dark;
+  }
+}

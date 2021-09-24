@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Typography from '../../Typography';
 import TextInput from '@components/TextInput';
 import TextArea from '@components/TextArea';
@@ -6,7 +7,16 @@ import FilePond from '@components/FilePond';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Modal from '@components/Modal';
 
-export default function Notification({ closeModal, formData, HandleFormData }) {
+export default function Notification({ closeModal, formData, setFormData }) {
+  const [files] = useState([]);
+
+  const HandleFormData = (value, field) => {
+    const newForm = { ...formData };
+    newForm[field] = value;
+    localStorage.setItem('formData', JSON.stringify(newForm));
+    setFormData(newForm);
+  };
+
   return (
     <Modal>
       <div className="bg-white w-11/12 md:w-8/12 lg:w-6/12  rounded p-3 md:p-5 overflow-y-scroll scrollbar-hide">
@@ -50,8 +60,13 @@ export default function Notification({ closeModal, formData, HandleFormData }) {
             inputClassName="p-2 md:p-3"
           />
         </div>
-        <p className="my-2 text-base text-gray-400">Poster</p>
-        <FilePond />
+
+        <FilePond
+          label="Poster"
+          setFiles={(res) => HandleFormData(res[0].url, 'poster')}
+          files={files}
+          className="my-2"
+        />
         <Button onClick={closeModal} btnType="primary">
           Continue to write Body of Blog
         </Button>

@@ -6,7 +6,7 @@ import BlogCard from './BlogCard';
 import SwiperNavigation from '@components/swiper/NavButton';
 import SwiperSection from '@components/swiper/SwiperSection';
 
-function Blogging() {
+function Blogging({ blogs }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -27,7 +27,7 @@ function Blogging() {
 
       <SwiperSection
         className="my-10"
-        data={new Array(15).fill(-1)}
+        data={blogs}
         nextRef={nextRef}
         prevRef={prevRef}
         component={BlogCard}

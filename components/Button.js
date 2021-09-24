@@ -52,7 +52,9 @@ function Button({
             disabled ? 'bg-gray-400' : 'bg-primary-dark'
           }`}
           {...props}
-        ></button>
+        >
+          {Loader}
+        </button>
       );
     }
 

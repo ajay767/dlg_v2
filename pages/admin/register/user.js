@@ -6,13 +6,21 @@ import Button from '@components/Button';
 import TextInput from '@components/TextInput';
 import Typography from '@components/Typography';
 import Modal from '@components/Modal';
-import Loader from '@utils/Loader';
-import { Animated } from 'react-animated-css';
+import { generateCaptcha } from '../../../utils/api';
 
 function RegisterUser() {
   const [name, setName] = useState('');
   const [modal, setModal] = useState(false);
-  const [token, setToken] = useState('DSGHDG6767');
+  const [token, setToken] = useState('');
+
+  const HandleTokenGenerator = async () => {
+    const result = await generateCaptcha({ name });
+    if (result.status === 'success') {
+      setModal(true);
+      setToken(result.value);
+    }
+  };
+
   return (
     <Wrapper>
       <Content>
@@ -21,7 +29,7 @@ function RegisterUser() {
             Register User
           </Typography>
           <TextInput label="User" value={name} setValue={setName} />
-          <Button btnType="primary" onClick={() => setModal(true)}>
+          <Button btnType="primary" onClick={HandleTokenGenerator}>
             Generate
           </Button>
 

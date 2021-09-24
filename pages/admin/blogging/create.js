@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import Draftjs from '@admin/blog/DraftEditor';
+import { blogUploader, resetLocalStorage } from '@utils/blogHelper';
 import { useState, useEffect, useCallback } from 'react';
-import { options, blockType } from '@admin/editorOptions';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import withAuth from '@lib/withAuth';
 import Wrapper from '@admin/Wrapper';
@@ -10,25 +10,22 @@ import routes from '@admin/routes';
 import Button from '@components/Button';
 import { throttle } from 'lodash';
 import BlogDetailForm from '@admin/blog/BlogDetailForm';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
-const Editor = dynamic(
-  () => import('react-draft-wysiwyg').then((module) => module.Editor),
-  {
-    ssr: false,
-  }
-);
-
+import toast from 'react-hot-toast';
 let LocalBase, db;
-function Blogging() {
+
+function BlogCardComponent() {
+  const [submitBtnState, setSubmitBtnState] = useState(false);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     tags: '',
-    blogImage: '',
+    poster: '',
+    author: 'DLG',
   });
+
+  const [reset, setReset] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const updateLocalBlogData = async (content) => {
     const blogs = await db.collection('blogs').get();
@@ -46,7 +43,7 @@ function Blogging() {
   };
 
   const throtteledUpdateLocalBlogData = useCallback(
-    throttle(updateLocalBlogData, 500),
+    throttle(updateLocalBlogData, 1000),
     []
   );
 
@@ -58,41 +55,25 @@ function Blogging() {
     throtteledUpdateLocalBlogData(editorBodyInString);
   };
 
-  const uploadImageHandler = async (file) => {
-    try {
-      const fd = new FormData();
-      fd.append('myFile', file, file.name);
-
-      const url = '/assets/images/tech2.jpg';
-      const response = {
-        data: {
-          link: url,
-        },
-      };
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
+  const BlogFormHandler = () => {
+    setShowModal(true);
   };
 
-  const HandleFormData = (value, field) => {
-    const newForm = { ...formData };
-    newForm[field] = value;
-    localStorage.setItem('formData', JSON.stringify(newForm));
-    setFormData(newForm);
-  };
+  const handleBlogUpload = async () => {
+    const body = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+    const data = {
+      ...formData,
+      body,
+    };
 
-  const uploadEditorStateHandler = async () => {
-    const editorBodyInString = JSON.stringify(
-      convertToRaw(editorState.getCurrentContent())
-    );
-    updateLocalBlogData(editorBodyInString);
-  };
+    const onLoad = () => {
+      setReset(true);
+      setSubmitBtnState(false);
 
-  const ResetLocalStorageHandler = async () => {
-    await db.collection('blogs').doc({ id: 1 }).delete();
-    localStorage.removeItem('formData');
-    setEditorState(EditorState.createEmpty());
+      toast.success('Blog Successfully Created');
+    };
+    setSubmitBtnState(true);
+    await blogUploader({ data, onLoad });
   };
 
   useEffect(() => {
@@ -116,53 +97,50 @@ function Blogging() {
     init();
   }, []);
 
-  const BlogFormHandler = () => {
-    setShowModal(true);
-  };
+  useEffect(() => {
+    const handler = async () => {
+      if (reset) {
+        await resetLocalStorage({ db, collection: 'blogs', id: 1 });
+        setEditorState(EditorState.createEmpty());
+      }
+    };
+    handler();
+  }, [reset]);
 
   return (
     <Wrapper>
       {showModal && (
         <BlogDetailForm
+          setFormData={setFormData}
           formData={formData}
-          HandleFormData={HandleFormData}
           closeModal={() => setShowModal(false)}
         />
       )}
-      {!showModal && <Navbar navItem={routes['blogging'].navbar} />}
+
+      <Navbar navItem={routes['blogging'].navbar} />
       <Content>
         {!showModal && (
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={onEditorStateChange}
-            toolbarClassName="flex sticky z-20 !justify-start"
-            editorClassName="mt-5 z-10 sticky shadow-sm border min-h-editor p-2"
-            toolbar={{
-              link: { inDropdown: true },
-              list: { inDropdown: true },
-              options: options,
-              image: {
-                uploadCallback: uploadImageHandler,
-                inputAccept: 'image/jpeg,image/jpg,image/png',
-                alt: { present: false, mandatory: false },
-                defaultSize: {
-                  height: '80px',
-                  width: '100%',
-                },
-              },
-            }}
-          />
+          <Draftjs initialState={editorState} onChange={onEditorStateChange} />
         )}
-        <Button onClick={uploadEditorStateHandler} btnType="primary">
-          Save
-        </Button>
-        <div className="inline ml-2">
-          <Button onClick={ResetLocalStorageHandler} btnType="primary">
+        <div className="flex items-center justify-start flex-wrap">
+          <Button
+            loading={submitBtnState}
+            onClick={handleBlogUpload}
+            btnType="primary"
+          >
+            Create Blog
+          </Button>
+
+          <Button
+            onClick={() =>
+              resetLocalStorage({ db, collection: 'blogs', id: 1 })
+            }
+            btnType="primary"
+            className="ml-2"
+          >
             Reset
           </Button>
-        </div>
-        <div className="inline ml-2">
-          <Button onClick={BlogFormHandler} btnType="primary">
+          <Button className="ml-2" onClick={BlogFormHandler} btnType="primary">
             Fill Blog Details
           </Button>
         </div>
@@ -171,7 +149,7 @@ function Blogging() {
   );
 }
 const authProp = {
-  component: Blogging,
+  component: BlogCardComponent,
   allowed: ['admin'],
 };
 export default withAuth(authProp);

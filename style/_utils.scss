@@ -1,0 +1,13 @@
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.lottie {
+  pointer-events: none;
+  position: absolute;
+  bottom: -10rem;
+  left: 0;
+  right: 0;
+  width: 95%;
+  margin: auto;
+}

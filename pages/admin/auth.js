@@ -1,29 +1,41 @@
 import { useState } from 'react';
-import Cookies from 'js-cookie';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdmiPortal from '@components/layout/AdminPortal';
 import Typography from '@components/Typography';
 import TextInput from '@components/TextInput';
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
+import { login } from './../../utils/api';
+import Cookies from 'js-cookie';
 
 function Auth() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [buttonState, setButtonState] = useState(false);
+
+  const onLoad = (data) => {
+    const { token } = data;
+    const { role } = data.user;
+    Cookies.set('token', token, { path: '/', expires: 60 * 60 });
+    Cookies.set('role', role, { path: '/', expires: 60 * 60 });
+    setButtonState(!buttonState);
+    toast.success('Welcome to the Admin of DLG');
+    router.push('/admin');
+  };
+
+  const onError = () => {
+    setButtonState(false);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post('/api/login', {
+    const data = {
       email,
       password,
-    });
-
-    Cookies.set('token', data.token, { path: '/' });
-    Cookies.set('role', data.role, { path: '/' });
-    toast.success('Welcome back!');
-    router.push('/admin');
+    };
+    setButtonState(!buttonState);
+    login(data, onLoad, onError);
   };
 
   return (
@@ -54,11 +66,16 @@ function Auth() {
               value={password}
               setValue={setPassword}
             />
-            <Button btnType="primary" type="submit" className="my-4 ">
+            <Button
+              loading={buttonState}
+              btnType="primary"
+              type="submit"
+              className="my-4 "
+            >
               Login
             </Button>
           </form>
-          <p className="text-sm text-gray-300 text-center">verion 2.0</p>
+          <p className="text-sm text-gray-400 text-center">version 2.0</p>
         </div>
       </div>
     </AdmiPortal>

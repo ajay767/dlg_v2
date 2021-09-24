@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import universalCookie from 'universal-cookie';
 import AdmiPortal from '../layout/AdminPortal';
 import Header from './Header';
 import Sidebar from './Sidebar';
-
-const localCookie = new universalCookie();
+import Cookies from 'js-cookie';
 
 function Wrapper({ children }) {
   const router = useRouter();
@@ -20,11 +18,11 @@ function Wrapper({ children }) {
     return true;
   });
 
-  const handleSignout = () => {
-    localCookie.set('token', '', { expires: new Date(0), path: '/' });
-    localCookie.set('role', '', { expires: new Date(0), path: '/' });
-    console.log('cookie removd');
-    router.push('/');
+  const handleSignout = async () => {
+    Cookies.remove('token', { path: '/' });
+    Cookies.remove('role', { path: '/' });
+    router.push('/admin/auth');
+    window.location.reload();
   };
 
   useEffect(() => {

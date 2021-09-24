@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import withAuth from '@lib/withAuth';
 import Wrapper from '@admin/Wrapper';
 import Content from '@admin/Content';
@@ -8,11 +8,31 @@ import FilePond from '@components/FilePond';
 import Typography from '@components/Typography';
 import Button from '@components/Button';
 import { HiBadgeCheck } from 'react-icons/hi';
+import { updateUser } from '@utils/api';
+import toast from 'react-hot-toast';
+import { Context as rootContext } from '@context/root';
 
 function Setting() {
-  const [name, setName] = useState('Ajay Yadav');
-  const [email, setEmail] = useState('aju9617@gmail.com');
+  const user = useContext(rootContext);
+
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [domain, setDomain] = useState('Technical Head');
+  const [files, setFiles] = useState([]);
+
+  const handleProfileUpdate = async () => {
+    const data = {
+      name: user.name,
+      email: user.email,
+      domain: 'Technical head',
+      photo: files.length > 0 ? files[files.length - 1].url : user.photo,
+    };
+    const result = await updateUser(data);
+    if (result.status === 'success') {
+      toast.success('succesfully Updated');
+      user.fetchUser();
+    }
+  };
 
   return (
     <Wrapper>
@@ -23,7 +43,7 @@ function Setting() {
         <div className="mx-auto w-full md:w-10/12 xl:w-8/12">
           <div className="relative w-20 h-20  md:w-28  md:h-28  bg-gray-200 rounded-full  mx-auto">
             <Image
-              src="/assets/images/user.png"
+              src={user.photo}
               className=" w-full h-full   rounded-full "
               alt="User"
             />
@@ -54,12 +74,20 @@ function Setting() {
           />
           <FilePond
             label="Picture"
-            value={name}
-            setValue={setName}
+            value={files}
+            setValue={setFiles}
             className="mt-2"
+            files={files}
+            setFiles={setFiles}
           />
-          <TextInput disabled value="SHJDS3787" label="Security Token" />
-          <Button btnType="primary">Update Profile</Button>
+          <TextInput
+            disabled
+            value={user.coupan.toUpperCase()}
+            label="Security Token"
+          />
+          <Button onClick={handleProfileUpdate} btnType="primary">
+            Update Profile
+          </Button>
         </div>
       </Content>
     </Wrapper>

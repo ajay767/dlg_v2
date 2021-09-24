@@ -7,8 +7,10 @@
 //components
 @import './components/btn';
 @import './components/spinner';
+@import './components/pagination';
 
 //pages
 @import './blog/blog';
 
+@import './utils';
 @import './admin/admin.scss';
