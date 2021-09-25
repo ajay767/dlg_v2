@@ -175,6 +175,20 @@ export const createQuestion = async (data) => {
   }
 };
 
+export const deleteQuestion = async (id) => {
+  try {
+    const response = await api.delete(
+      `/api/v2/quiz/delete-question/${id}`,
+      getConfig()
+    );
+    toast.success('Deleted successfully!');
+    return response.data;
+  } catch (err) {
+    toast.error(`${err.response.data.message}`);
+    return { status: 'fail' };
+  }
+};
+
 export const createQuiz = async (data) => {
   try {
     const response = await api.post(

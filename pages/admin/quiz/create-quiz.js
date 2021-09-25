@@ -76,8 +76,12 @@ function Quiz({ problems }) {
       </AnimatePresence>
       <Navbar navItem={routes['quiz'].navbar} />
       <Content>
-        <Typography type="section" className="text-gray-600 mb-5">
+        <Typography type="section" className="text-gray-600 mb-2">
           All Questions
+        </Typography>
+        <Typography type="caption" className="text-gray-600 mb-5">
+          <span className="font-bold">Note: </span>All the changes will be
+          applied after you refresh the page.
         </Typography>
         <div className="space-y-4">
           {problems.map((problem, index) => {
