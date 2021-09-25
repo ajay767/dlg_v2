@@ -189,3 +189,16 @@ export const createQuiz = async (data) => {
     return { status: 'fail' };
   }
 };
+
+export const submitQuiz = async (data, onSuccess, onError) => {
+  try {
+    const response = await api.post('/api/v2/quiz/submit', data);
+    toast.success('Submitted!');
+    onSuccess();
+    return response.data;
+  } catch (error) {
+    toast.error(`${error.response.data.message}`);
+    onError();
+    return { status: 'fail' };
+  }
+};

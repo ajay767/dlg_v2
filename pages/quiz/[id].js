@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { getAllQuiz, getQuiz } from '@utils/api';
+import { getAllQuiz, getQuiz, submitQuiz } from '@utils/api';
 import PageWrapper from '@layout/PageWrapper';
 import Section from '@layout/Section';
 import Typography from '@components/Typography';
@@ -21,9 +21,14 @@ function LatestQuiz({ current }) {
 
   const data = current.quiz;
 
+  const [userData, setUserData] = useState({});
   const [quiz, setquiz] = useState(false);
   const [quizEnd, setQuizEnd] = useState(false);
-  const [answer, setAnswer] = useState({});
+  const [answer, setAnswer] = useState(() => {
+    let res = {};
+    data.questions.forEach((curr) => (res[curr._id] = '-1'));
+    return res;
+  });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState(data.questions);
 
@@ -31,6 +36,7 @@ function LatestQuiz({ current }) {
     if (!data.name || !data.email) {
       toast.error('Invalid Form Details');
     } else {
+      setUserData({ name: data.name, email: data.email });
       setquiz(true);
     }
   };
@@ -43,9 +49,22 @@ function LatestQuiz({ current }) {
     setAnswer({ ...answer, [questionID]: answerID });
   };
 
-  const handleSubmit = () => {
-    localStorage.removeItem('quiz_player');
-    setQuizEnd(true);
+  const handleSubmit = async () => {
+    const onSuccess = () => {
+      localStorage.removeItem('quiz_player');
+      setQuizEnd(true);
+    };
+
+    const onError = () => {
+      router.push('/quiz');
+      localStorage.removeItem('quiz_player');
+    };
+
+    await submitQuiz(
+      { ...userData, answers: answer, quiz: router.query.id },
+      onSuccess,
+      onError
+    );
   };
 
   return (

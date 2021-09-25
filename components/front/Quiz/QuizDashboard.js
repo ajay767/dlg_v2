@@ -33,7 +33,14 @@ function QuizDashboard({
   }, []);
 
   useEffect(() => {
-    window.onbeforeunload = () => setCheckpoint(timer);
+    window.onbeforeunload = () => {
+      setCheckpoint(timer);
+      return 'Please submit quiz before leaving!!';
+    };
+
+    return () => {
+      window.onbeforeunload = () => {};
+    };
   });
 
   return (
@@ -44,7 +51,7 @@ function QuizDashboard({
             title="Submitted successfully"
             onClose={() => {
               setQuizEnd(!quizEnd);
-              onSubmit();
+              localStorage.removeItem('quiz_player');
               router.push('/quiz');
             }}
           >
@@ -81,7 +88,7 @@ function QuizDashboard({
                 {index + 1}
               </div>
             );
-          } else if (question._id in answer) {
+          } else if (answer[question._id] !== '-1') {
             return (
               <div
                 onClick={() => selectQuestion(index)}

@@ -10,7 +10,6 @@ function QuestionForm({
   answer,
 }) {
   const { question, options, _id: questionID } = current;
-
   return (
     <div>
       <Typography type="title" className="text-gray-600">
