@@ -4,41 +4,46 @@ import Link from 'next/link';
 
 function Header({ toggleSidebar }) {
   return (
-    <header className="sticky top-0 left-0 right-0 bg-white z-20 border-b border-gray-100">
-      <Section className="py-2 flex items-center justify-between">
+    <header className='sticky top-0 left-0 right-0 bg-white z-20 border-b border-gray-100'>
+      <Section className='py-2 flex items-center justify-between'>
         <img
-          className="h-12 md:h-16"
-          alt="Logo main"
-          src="/assets/images/logo_main.png"
+          className='h-12 md:h-16'
+          alt='Logo main'
+          src='/assets/images/logo_main.png'
         />
-        <div className="hidden md:flex items-center justify-between md:w-6/12 lg:w-8/12 xl:w-6/12">
-          <Link href="/">
-            <a className="text-gray-600 text-base cursor-pointer">Home</a>
+        <div className='hidden md:flex items-center justify-between md:w-6/12 lg:w-8/12 xl:w-6/12'>
+          <Link href='/'>
+            <a className='text-gray-600 text-base cursor-pointer'>Home</a>
           </Link>
-          <Link href="/quiz">
-            <a className="text-gray-600 text-base cursor-pointer">Quiz</a>
+          <Link href='/quiz'>
+            <a className='text-gray-600 text-base cursor-pointer'>Quiz</a>
           </Link>
-          <Link href="/blog">
-            <a className="text-gray-600 text-base cursor-pointer">Blogs</a>
+          <Link href='/blog'>
+            <a className='text-gray-600 text-base cursor-pointer'>Blogs</a>
           </Link>
-          <Link href="/blog/613a2e614ef35b9dc25dbb31">
-            <a className="text-gray-600 text-base cursor-pointer">Career</a>
+          <Link href='/blog/613a2e614ef35b9dc25dbb31'>
+            <a className='text-gray-600 text-base cursor-pointer'>Career</a>
           </Link>
-          <Link href="/contact">
-            <a className="hidden lg:block text-gray-600 text-base cursor-pointer">
+          <Link href='/contact'>
+            <a className='hidden lg:block text-gray-600 text-base cursor-pointer'>
               Contact us
             </a>
           </Link>
-          <Link href="/about">
-            <a className="hidden lg:block text-gray-600 text-base cursor-pointer">
+          <Link href='/about'>
+            <a className='hidden lg:block text-gray-600 text-base cursor-pointer'>
               About us
             </a>
           </Link>
+          <Link href='/admin'>
+            <a className='hidden lg:block text-gray-600 text-base cursor-pointer'>
+              Admin
+            </a>
+          </Link>
         </div>
-        <div className="block md:hidden">
+        <div className='block md:hidden'>
           <BiMenu
             size={34}
-            className="text-gray-700 cursor-pointer"
+            className='text-gray-700 cursor-pointer'
             onClick={toggleSidebar}
           />
         </div>
