@@ -11,31 +11,31 @@ import Image from 'next/image';
 
 function TeamCard({ data }) {
   return (
-    <div className="bg-white p-2 rounded shadow text-gray-700">
+    <div className='bg-white p-2 rounded shadow text-gray-700'>
       <CustomImageComponent
-        src={data}
-        className="w-44 h-44 object-cover rounded"
+        src={data.image}
+        className='w-44 h-44 object-cover rounded'
       />
-      <div className="my-2 ">
-        <Typography type="header-caption" className="font-bold">
-          Ajay yadav
+      <div className='my-2 '>
+        <Typography type='header-caption' className='font-bold'>
+          {data.name}
         </Typography>
-        <Typography type="header-caption">Technical Head</Typography>
+        <Typography type='header-caption'>Technical Head</Typography>
       </div>
     </div>
   );
 }
 
 const team = [
-  '/assets/images/dev-ajay.jpg',
-  '/assets/images/sidd_sir.jpg',
-  '/assets/images/harshita.jpeg',
-  '/assets/images/satyam.jpeg',
-  '/assets/images/vaishnavi.jpeg',
-  '/assets/images/nipurn_sir.jpg',
-  '/assets/images/profile1.jpg',
-  '/assets/images/profile2.webp',
-  '/assets/images/profile3.jpg',
+  { image: '/assets/images/dev-ajay.jpg', name: 'Ajay Yadav' },
+  { image: '/assets/images/sidd_sir.jpg', name: 'Siddharth' },
+  { image: '/assets/images/harshita.jpeg', name: 'Harshita Verma' },
+  { image: '/assets/images/satyam.jpeg', name: 'Satyam Pandey' },
+  { image: '/assets/images/vaishnavi.jpeg', name: 'vaishnavi Pandey' },
+  { image: '/assets/images/nipurn_sir.jpg', name: 'Nipurn Runji' },
+  { image: '/assets/images/profile1.jpg', name: 'Ashu Singh' },
+  { image: '/assets/images/profile2.webp', name: 'Harpithe Kaur' },
+  { image: '/assets/images/profile3.jpg', name: 'Raj verma' },
 ];
 
 function About() {
@@ -44,7 +44,7 @@ function About() {
   return (
     <PageWrapper>
       <div
-        className="overflow-hidden relative shadow-lg flex flex-col md:flex-row justify-between items-center h-max bg-gray-800"
+        className='overflow-hidden relative shadow-lg flex flex-col md:flex-row justify-between items-center h-max bg-gray-800'
         style={{
           backgroundImage:
             ' linear-gradient(125deg, #000 50%, rgba(0,0,0,0)), url("/assets/images/meet.jpg")',
@@ -53,13 +53,13 @@ function About() {
         }}
       >
         <Section>
-          <div className=" py-10  md:py-20">
-            <div className="text-gray-100 w-full md:w-11/12 lg:w-8/12 xl:w-6/12     ">
-              <Typography type="primary" className="mb-2">
+          <div className=' py-10  md:py-20'>
+            <div className='text-gray-100 w-full md:w-11/12 lg:w-8/12 xl:w-6/12     '>
+              <Typography type='primary' className='mb-2'>
                 Working Together is
-                <span className="text-primary"> Success</span>
+                <span className='text-primary'> Success</span>
               </Typography>
-              <Typography type="header-caption" className="">
+              <Typography type='header-caption' className=''>
                 Digital learning group is a student run community of Madhav
                 Institute of Technology and Science. We help students excel in
                 their careers by helping them develop their technical and soft
@@ -71,17 +71,17 @@ function About() {
         </Section>
       </div>
       <Section>
-        <div className="mt-10  mb-10 md:py-20  flex flex-col md:flex-row justify-around items-center">
+        <div className='mt-10  mb-10 md:py-20  flex flex-col md:flex-row justify-around items-center'>
           <CustomImageComponent
-            className="w-full md:w-6/12 lg:w-4/12  shadow-md h-56 md:h-64  rounded-md"
-            src="/assets/images/people-chair.jpg"
-            alt="people on chair"
+            className='w-full md:w-6/12 lg:w-4/12  shadow-md h-56 md:h-64  rounded-md'
+            src='/assets/images/people-chair.jpg'
+            alt='people on chair'
           />
-          <div className=" w-full md:w-6/12 md:p-5 lg:p-10 mt-5 md:mt-0 text-gray-700">
-            <Typography type="secondary" className="mb-2">
+          <div className=' w-full md:w-6/12 md:p-5 lg:p-10 mt-5 md:mt-0 text-gray-700'>
+            <Typography type='secondary' className='mb-2'>
               How we work
             </Typography>
-            <Typography type="content">
+            <Typography type='content'>
               We frequently organize workshops, webinars and various activities
               on online platforms which focuses on development of technical and
               soft skills, required in the real world. The best thing about us
@@ -89,17 +89,17 @@ function About() {
             </Typography>
           </div>
         </div>
-        <div className="my-5 md:py-20  flex flex-col md:flex-row justify-around items-center">
+        <div className='my-5 md:py-20  flex flex-col md:flex-row justify-around items-center'>
           <CustomImageComponent
-            className="w-full md:w-6/12 lg:w-4/12 md:order-last shadow-md h-56 md:h-64  rounded-md"
-            src="/assets/images/meet.jpg"
-            alt="people on chair"
+            className='w-full md:w-6/12 lg:w-4/12 md:order-last shadow-md h-56 md:h-64  rounded-md'
+            src='/assets/images/meet.jpg'
+            alt='people on chair'
           />
-          <div className=" w-full md:w-6/12 md:p-10 mt-5 md:mt-0 text-gray-700">
-            <Typography type="secondary" className="mb-2">
+          <div className=' w-full md:w-6/12 md:p-10 mt-5 md:mt-0 text-gray-700'>
+            <Typography type='secondary' className='mb-2'>
               Webinar and Events
             </Typography>
-            <Typography type="content">
+            <Typography type='content'>
               We organize weekly webinars with professionals and experts as
               speakers. Our webinars deal with plathora of topics which revolve
               around “How to be placement and industry ready”,
@@ -110,7 +110,7 @@ function About() {
         </div>
       </Section>
       <Section>
-        <div className="mb-10">
+        <div className='mb-10'>
           <Accordian />
         </div>
       </Section>
@@ -119,13 +119,13 @@ function About() {
         <CoreTeam />
       </Section>
 
-      <Section className="my-10">
-        <div className="mb-5 flex items-center justify-between">
+      <Section className='my-10'>
+        <div className='mb-5 flex items-center justify-between'>
           <div>
-            <Typography className="text-gray-700" type="secondary">
+            <Typography className='text-gray-700' type='secondary'>
               Our Team
             </Typography>
-            <Typography className="text-gray-500" type="header-caption">
+            <Typography className='text-gray-500' type='header-caption'>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </Typography>
