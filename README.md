@@ -17,6 +17,8 @@ It organises various events, tech talks and internal hackathons.
 
 ![Screenshot 2022-08-30 at 10 45 59 AM](https://user-images.githubusercontent.com/58135870/187357531-90e52cd7-2fac-48b8-bc50-fb9d725439d1.jpg)
 
+![Screenshot 2022-08-30 at 11 05 13 AM](https://user-images.githubusercontent.com/58135870/187357689-7500fa9b-00f8-4e80-a25c-0c837197bd48.jpg)
+
 ## Developers
 
 - [@ajay767](https://www.github.com/ajay767)
